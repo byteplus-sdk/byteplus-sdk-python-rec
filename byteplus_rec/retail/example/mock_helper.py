@@ -84,7 +84,7 @@ def mock_user_event() -> dict:
     user_event = {
         "user_id": "1457789",
         "event_type": "purchase",
-        "event_timestamp": 1623681888,
+        "event_timestamp": 1640657087,
         "scene": "product detail page",
         "scene_page_number": 2,
         "scene_offset": 10,

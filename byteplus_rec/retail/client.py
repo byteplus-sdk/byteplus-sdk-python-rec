@@ -3,14 +3,13 @@ import logging
 from byteplus_rec.retail.protocol import WriteDataRequest, WriteResponse, PredictRequest, PredictResponse, \
     AckServerImpressionsRequest, AckServerImpressionsResponse
 from byteplus_rec_core.exception import BizException
-from byteplus_rec_core.http_client import HTTPClient, HTTPClientBuilder
+from byteplus_rec_core.http_client import HTTPClient, new_http_client_builder
 from byteplus_rec_core.option import Option
-from byteplus_rec.retail.constant import MAX_WRITE_COUNT
-import byteplus_rec.region  # initialize
+from byteplus_rec.retail.constant import _MAX_WRITE_COUNT
 
 log = logging.getLogger(__name__)
 
-_ERR_MSG_TOO_MANY_ITEMS: str = "Only can receive max to {} items in one request".format(MAX_WRITE_COUNT)
+_ERR_MSG_TOO_MANY_ITEMS: str = "Only can receive max to {} items in one request".format(_MAX_WRITE_COUNT)
 
 _HTTP_HEADER_SERVER_FROM: str = "Server-From"
 _SAAS_FLAG: str = "saas"
@@ -55,8 +54,8 @@ class Client(object):
         self._check_upload_data_request(write_request.project_id, write_request.stage)
         if len(opts) == 0:
             opts = ()
-        if len(write_request.data) > MAX_WRITE_COUNT:
-            log.warning("[ByteplusSDK][WriteData] item count more than '%d'", MAX_WRITE_COUNT)
+        if len(write_request.data) > _MAX_WRITE_COUNT:
+            log.warning("[ByteplusSDK][WriteData] item count more than '%d'", _MAX_WRITE_COUNT)
             raise BizException(_ERR_MSG_TOO_MANY_ITEMS)
         opts: tuple = self._add_saas_flag(opts)
         response: WriteResponse = WriteResponse()
@@ -98,18 +97,19 @@ class Client(object):
         self._http_client.shutdown()
 
 
-_VOLC_AUTH_SERVICE = "air"
+_BYTEPLUS_AUTH_SERVICE = "byteplus_recommend"
 
 
 class ClientBuilder(object):
     def __init__(self):
         self._tenant_id = ""
         self._token = ""
-        self._ak = ""
-        self._sk = ""
+        self._auth_ak = ""
+        self._auth_sk = ""
         self._schema = ""
         self._hosts = None
         self._region = ""
+        self._host_header = ""
 
     def tenant_id(self, tenant_id: str):
         self._tenant_id = tenant_id
@@ -119,12 +119,12 @@ class ClientBuilder(object):
         self._token = token
         return self
 
-    def ak(self, ak: str):
-        self._ak = ak
+    def auth_ak(self, auth_ak: str):
+        self._auth_ak = auth_ak
         return self
 
-    def sk(self, sk: str):
-        self._sk = sk
+    def auth_sk(self, auth_sk: str):
+        self._auth_sk = auth_sk
         return self
 
     def schema(self, schema: str):
@@ -135,19 +135,25 @@ class ClientBuilder(object):
         self._hosts = hosts
         return self
 
+    def host_header(self, host_header: str):
+        self._host_header = host_header
+        return self
+
     def region(self, region: str):
         self._region = region
         return self
 
     def build(self) -> Client:
-        http_client: HTTPClient = HTTPClientBuilder() \
+        http_client: HTTPClient = new_http_client_builder() \
             .tenant_id(self._tenant_id) \
             .token(self._token) \
-            .ak(self._ak).sk(self._sk) \
+            .ak(self._auth_ak) \
+            .sk(self._auth_sk) \
             .schema(self._schema) \
             .hosts(self._hosts) \
             .region(self._region) \
-            .use_air_auth(False)\
-            .auth_service(_VOLC_AUTH_SERVICE)\
+            .host_header(self._host_header) \
+            .use_air_auth(False) \
+            .auth_service(_BYTEPLUS_AUTH_SERVICE) \
             .build()
         return Client(http_client)

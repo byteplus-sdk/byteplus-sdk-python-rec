@@ -22,11 +22,11 @@ from byteplus_rec_core.status_helper import is_upload_success, is_success
 log = logging.getLogger(__name__)
 
 # A unique identity assigned by Bytedance.
-PROJECT_ID = "*********"
+PROJECT_ID = "***********"
 
 # Unique id for this model.The saas model id that can be used to get rec results from predict api,
 # which is need to fill in URL.
-MODEL_ID = "********"
+MODEL_ID = "***********"
 
 # Required Param:
 #       tenant_id
@@ -37,10 +37,10 @@ MODEL_ID = "********"
 #       scheme
 #       hosts
 client: Client = ClientBuilder() \
-    .tenant_id("432941789") \
+    .tenant_id("***********") \
     .region(region.SG) \
-    .ak("123") \
-    .sk("321") \
+    .auth_ak("***********") \
+    .auth_sk("***********") \
     .build()
 
 DEFAULT_RETRY_TIMES = 2
@@ -60,13 +60,13 @@ def main():
     write_users_example()
 
     # Write real-time product data
-    # write_products_example()
+    write_products_example()
 
     # Write real-time user event data
-    # write_user_events_example()
+    write_user_events_example()
 
     # Get recommendation results
-    # recommend_example()
+    recommend_example()
 
     time.sleep(3)
     client.release()
@@ -94,8 +94,10 @@ def _build_write_user_request(count: int) -> WriteDataRequest:
     request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     users = mock_users(count)
-    for user in users:
-        request.data.extend(json.dumps(user))
+    user_str_list = [None] * len(users)
+    for i in range(len(users)):
+        user_str_list[i] = json.dumps(users[i])
+    request.data.extend(user_str_list)
 
     # Optional
     # request.extra["extra_info"] = "value"
@@ -111,7 +113,7 @@ def write_products_example():
     except BizException as e:
         log.error("write product occur err, msg:%s", e)
         return
-    if is_upload_success(response.status):
+    if is_upload_success(response.status.code):
         log.info("write product success")
         return
     log.error("write product find fail, msg:%s errItems:%s", response.status, response.errors)
@@ -123,8 +125,11 @@ def _build_write_product_request(count: int) -> WriteDataRequest:
     request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     products = mock_products(count)
-    for product in products:
-        request.data.extend(json.dumps(product))
+    product_str_list = [None] * len(products)
+    for i in range(len(products)):
+        product_str_list[i] = json.dumps(products[i])
+
+    request.data.extend(product_str_list)
 
     # Optional
     # request.extra["extra_info"] = "value"
@@ -140,7 +145,7 @@ def write_user_events_example():
     except BizException as e:
         log.error("write user_event occur err, msg:%s", e)
         return
-    if is_upload_success(response.status):
+    if is_upload_success(response.status.code):
         log.info("write user_event success")
         return
     log.error("write user event find failure info, msg:%s errItems:%s", response.status, response.errors)
@@ -152,8 +157,11 @@ def _build_write_user_event_request(count: int) -> WriteDataRequest:
     request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     user_events = mock_user_events(count)
-    for user_event in user_events:
-        request.data.extend(json.dumps(user_event))
+    user_event_str_list = [None] * len(user_events)
+    for i in range(len(user_events)):
+        user_event_str_list[i] = json.dumps(user_events[i])
+
+    request.data.extend(user_event_str_list)
 
     # Optional
     # request.extra["extra_info"] = "value"
@@ -236,10 +244,22 @@ def _build_ack_impressions_request(predict_request_id: str, predict_request: Pre
 
 def _default_opts(timeout: timedelta) -> tuple:
     # customer_headers = {}
+    # customer_queries = {}
     return (
         Option.with_timeout(timeout),
         Option.with_request_id(str(uuid.uuid1())),
+        # # Optional.Add a set of customer headers to the request, which will be overwritten by multiple calls.
         # Option.with_headers(customer_headers),
+        # # Optional. Add a set of customer queries to the request, which will be overwritten by multiple calls.
+        # Option.with_queries(customer_queries),
+        # # Optional. Add a header to an existing custom header collection.
+        # Option.with_header("key", "value"),
+        # # Optional. Add a query to an existing custom query collection.
+        # Option.with_query("key", "value"),
+        # # Optional. It is expected that the server will process the data for the maximum time.
+        # # If the processing time exceeds this time, the server will return the result immediately,
+        # # regardless of whether there is any remaining data that has not been processed.
+        # Option.with_server_timeout(timedelta(milliseconds=5000))
     )
 
 

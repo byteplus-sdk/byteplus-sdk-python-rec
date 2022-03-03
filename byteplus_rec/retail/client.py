@@ -110,6 +110,7 @@ class ClientBuilder(object):
         self._hosts = None
         self._region = ""
         self._host_header = ""
+        self._project_id = ""
 
     def tenant_id(self, tenant_id: str):
         self._tenant_id = tenant_id
@@ -139,6 +140,10 @@ class ClientBuilder(object):
         self._host_header = host_header
         return self
 
+    def project_id(self, project_id: str):
+        self._project_id = project_id
+        return self
+
     def region(self, region: str):
         self._region = region
         return self
@@ -153,6 +158,7 @@ class ClientBuilder(object):
             .hosts(self._hosts) \
             .region(self._region) \
             .host_header(self._host_header) \
+            .project_id(self._project_id) \
             .use_air_auth(False) \
             .auth_service(_BYTEPLUS_AUTH_SERVICE) \
             .build()

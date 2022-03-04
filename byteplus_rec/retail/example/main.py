@@ -5,13 +5,15 @@ import time
 import uuid
 from datetime import timedelta
 from signal import SIGKILL
+from typing import Optional
 
 from google.protobuf.message import Message
 
 from byteplus_rec.region.region import Region
-from byteplus_rec.retail.client import ClientBuilder, Client
+from byteplus_rec.retail.retail_client import Client
+from byteplus_rec.retail.retail_client_builder import ClientBuilder
 from byteplus_rec.retail.constant import STAGE_TRIAL
-from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, mock_product, \
+from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
     mock_device, mock_predict_product
 from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, PredictRequest, AckServerImpressionsRequest
 from byteplus_rec_core import utils
@@ -40,12 +42,12 @@ try:
     client: Client = ClientBuilder() \
         .tenant_id("***********") \
         .region(Region.SG) \
+        .project_id(PROJECT_ID) \
         .auth_ak("***********") \
         .auth_sk("***********") \
-        .project_id(PROJECT_ID) \
         .build()
-except BizException as e:
-    log.error("fail to create byteplus rec client, msg:%s", e)
+except BizException as clientE:
+    log.error("fail to create byteplus rec client, msg:%s", clientE)
 
 DEFAULT_RETRY_TIMES = 2
 
@@ -82,7 +84,8 @@ def write_users_example():
     request = _build_write_user_request(1)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
-        response: WriteResponse = utils.do_with_retry(client.write_users, request, opts, DEFAULT_RETRY_TIMES)
+        # response: WriteResponse = utils.do_with_retry(client.write_users, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.write_users(request, *opts)
     except BizException as e:
         log.error("write user occur err, msg:%s", e)
         return
@@ -95,13 +98,12 @@ def write_users_example():
 
 def _build_write_user_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     users = mock_users(count)
 
-    user_str_list = []
-    for user in users:
-        user_str_list.append(json.dumps(user))
+    user_str_list = [Optional[str]] * len(users)
+    for i in range(len(users)):
+        user_str_list[i] = json.dumps(users[i])
 
     request.data.extend(user_str_list)
 
@@ -115,7 +117,8 @@ def write_products_example():
     request = _build_write_product_request(1)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
-        response: WriteResponse = utils.do_with_retry(client.write_products, request, opts, DEFAULT_RETRY_TIMES)
+        # response: WriteResponse = utils.do_with_retry(client.write_products, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.write_products(request, *opts)
     except BizException as e:
         log.error("write product occur err, msg:%s", e)
         return
@@ -128,13 +131,11 @@ def write_products_example():
 
 def _build_write_product_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     products = mock_products(count)
-
-    product_str_list = []
-    for product in products:
-        product_str_list.append(json.dumps(product))
+    product_str_list = [Optional[str]] * len(products)
+    for i in range(len(products)):
+        product_str_list[i] = json.dumps(products[i])
 
     request.data.extend(product_str_list)
 
@@ -148,7 +149,8 @@ def write_user_events_example():
     request = _build_write_user_event_request(1)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
-        response: WriteResponse = utils.do_with_retry(client.write_user_events, request, opts, DEFAULT_RETRY_TIMES)
+        # response: WriteResponse = utils.do_with_retry(client.write_user_events, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.write_user_events(request, *opts)
     except BizException as e:
         log.error("write user_event occur err, msg:%s", e)
         return
@@ -161,12 +163,11 @@ def write_user_events_example():
 
 def _build_write_user_event_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.project_id = PROJECT_ID
     request.stage = STAGE_TRIAL
     user_events = mock_user_events(count)
-    user_event_str_list = []
-    for user_event in user_events:
-        user_event_str_list.append(json.dumps(user_event))
+    user_event_str_list = [Optional[str]] * len(user_events)
+    for i in range(len(user_events)):
+        user_event_str_list[i] = json.dumps(user_events[i])
 
     request.data.extend(user_event_str_list)
 
@@ -200,7 +201,6 @@ def recommend_example():
 
 def _build_predict_request() -> PredictRequest:
     request = PredictRequest()
-    request.project_id = PROJECT_ID
     request.model_id = MODEL_ID
     request.user_id = "1457789"
     request.size = 20
@@ -228,23 +228,24 @@ def do_something_with_predict_result(predict_result):
 def conv_to_altered_products(product_results):
     if product_results is None or len(product_results) == 0:
         return
-    altered_products = []
-    for product_result in product_results:
+    size = len(product_results)
+    altered_products = [Optional[AckServerImpressionsRequest.AlteredProduct]] * size
+    for i in range(size):
+        product_result = product_results[i]
         altered_product = AckServerImpressionsRequest.AlteredProduct()
         altered_product.altered_reason = "kept"
         altered_product.product_id = product_result.product_id
         altered_product.rank = product_result.rank
-        altered_products.append(altered_product)
+        altered_products[i] = altered_product
     return altered_products
 
 
 def _build_ack_impressions_request(predict_request_id: str, predict_request: PredictRequest, altered_products: list):
     request = AckServerImpressionsRequest()
-    request.project_id = predict_request.project_id
     request.model_id = predict_request.model_id
     request.predict_request_id = predict_request_id
     request.user_id = predict_request.user_id
-    scene: Message = predict_request.scene
+    scene: Message = request.scene
     scene.CopyFrom(predict_request.scene)
     request.altered_products.extend(altered_products)
     return request

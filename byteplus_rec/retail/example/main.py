@@ -38,10 +38,10 @@ MODEL_ID = "***********"
 #       hosts
 try:
     client: Client = ClientBuilder() \
-        .tenant_id("3000001729") \
+        .tenant_id("***********") \
         .region(Region.SG) \
-        .auth_ak("AKAPMzgwYzYzN2EzMjQ2NDc3Zjg1ZmZmZmMwODAzMjg2Njk") \
-        .auth_sk("TURsbU9EZ3pOekppWkRBM05HVTVZbUl5WXpoaU5tTmhZbUprTkRKbU9HRQ==") \
+        .auth_ak("***********") \
+        .auth_sk("***********") \
         .project_id(PROJECT_ID) \
         .build()
 except BizException as e:
@@ -61,16 +61,16 @@ logging.basicConfig(level=logging.NOTSET)
 
 def main():
     # Write real-time user data
-    # write_users_example()
+    write_users_example()
 
-    # # Write real-time product data
-    # write_products_example()
-    #
-    # # Write real-time user event data
+    # Write real-time product data
+    write_products_example()
+
+    # Write real-time user event data
     write_user_events_example()
-    #
-    # # Get recommendation results
-    # recommend_example()
+
+    # Get recommendation results
+    recommend_example()
 
     time.sleep(5)
     client.release()

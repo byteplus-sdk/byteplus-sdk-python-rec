@@ -6,6 +6,7 @@ from byteplus_rec_core.exception import BizException
 from byteplus_rec_core.http_client import HTTPClient, new_http_client_builder
 from byteplus_rec_core.option import Option
 from byteplus_rec.retail.constant import _MAX_WRITE_COUNT
+from byteplus_rec_core.abstract_region import AbstractRegion
 
 log = logging.getLogger(__name__)
 
@@ -108,8 +109,7 @@ class ClientBuilder(object):
         self._auth_sk = ""
         self._schema = ""
         self._hosts = None
-        self._region = ""
-        self._host_header = ""
+        self._region = None
         self._project_id = ""
 
     def tenant_id(self, tenant_id: str):
@@ -136,15 +136,11 @@ class ClientBuilder(object):
         self._hosts = hosts
         return self
 
-    def host_header(self, host_header: str):
-        self._host_header = host_header
-        return self
-
     def project_id(self, project_id: str):
         self._project_id = project_id
         return self
 
-    def region(self, region: str):
+    def region(self, region: AbstractRegion):
         self._region = region
         return self
 
@@ -157,7 +153,6 @@ class ClientBuilder(object):
             .schema(self._schema) \
             .hosts(self._hosts) \
             .region(self._region) \
-            .host_header(self._host_header) \
             .project_id(self._project_id) \
             .use_air_auth(False) \
             .auth_service(_BYTEPLUS_AUTH_SERVICE) \

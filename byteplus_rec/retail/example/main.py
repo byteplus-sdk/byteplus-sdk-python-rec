@@ -8,7 +8,7 @@ from signal import SIGKILL
 
 from google.protobuf.message import Message
 
-from byteplus_rec import region
+from byteplus_rec.region.region import Region
 from byteplus_rec.retail.client import ClientBuilder, Client
 from byteplus_rec.retail.constant import STAGE_TRIAL
 from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, mock_product, \
@@ -38,10 +38,10 @@ MODEL_ID = "***********"
 #       hosts
 try:
     client: Client = ClientBuilder() \
-        .tenant_id("***********") \
-        .region(region.SG) \
-        .auth_ak("***********") \
-        .auth_sk("***********") \
+        .tenant_id("3000001729") \
+        .region(Region.SG) \
+        .auth_ak("AKAPMzgwYzYzN2EzMjQ2NDc3Zjg1ZmZmZmMwODAzMjg2Njk") \
+        .auth_sk("TURsbU9EZ3pOekppWkRBM05HVTVZbUl5WXpoaU5tTmhZbUprTkRKbU9HRQ==") \
         .project_id(PROJECT_ID) \
         .build()
 except BizException as e:
@@ -61,16 +61,16 @@ logging.basicConfig(level=logging.NOTSET)
 
 def main():
     # Write real-time user data
-    write_users_example()
+    # write_users_example()
 
-    # Write real-time product data
-    write_products_example()
-
-    # Write real-time user event data
+    # # Write real-time product data
+    # write_products_example()
+    #
+    # # Write real-time user event data
     write_user_events_example()
-
-    # Get recommendation results
-    recommend_example()
+    #
+    # # Get recommendation results
+    # recommend_example()
 
     time.sleep(5)
     client.release()

@@ -1,8 +1,10 @@
+from typing import Optional
+
 from byteplus_rec.retail.protocol import Device, Product
 
 
 def mock_users(count: int) -> list:
-    users = [None] * count
+    users = [Optional[str]] * count
     for i in range(count):
         user: dict = mock_user()
         user["user_id"] = user["user_id"] + str(i)
@@ -32,7 +34,7 @@ def mock_user() -> dict:
 
 
 def mock_products(count: int) -> list:
-    products = [None] * count
+    products = [Optional[str]] * count
     for i in range(count):
         product: dict = mock_product()
         product["product_id"] = product["product_id"] + str(i)
@@ -73,7 +75,7 @@ def mock_product() -> dict:
 
 
 def mock_user_events(count: int) -> list:
-    user_events = [None] * count
+    user_events = [Optional[str]] * count
     for i in range(count):
         user_event: dict = mock_user_event()
         user_events[i] = user_event

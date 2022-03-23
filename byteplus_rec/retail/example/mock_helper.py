@@ -122,7 +122,7 @@ def mock_user_event() -> dict:
 def mock_predict_product() -> Product:
     product = Product()
     product.product_id = "632461"
-    product.is_recommendable = True
+    product.is_recommendable = 1
     product.title = "adidas Men's Yeezy Boost 350 V2 Grey/Borang/Dgsogr"
     product.quality_score = 4.4
     product.tags.extend(["New Product", "Summer Product"])

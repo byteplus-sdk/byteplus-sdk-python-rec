@@ -19,6 +19,8 @@ class Client(AbstractClient):
         self._project_id = project_id
 
     def _do_write_data(self, write_request: WriteDataRequest, path: str, *opts: Option) -> WriteResponse:
+        if len(self._project_id) > 0 and len(write_request.project_id) == 0:
+            write_request.project_id = self._project_id
         self._check_upload_data_request(write_request)
         if len(opts) == 0:
             opts = ()
@@ -38,19 +40,17 @@ class Client(AbstractClient):
             raise BizException("stage in upload request is empty")
 
     def write_users(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
-        write_request.project_id = self._project_id
         return self._do_write_data(write_request, "/RetailSaaS/WriteUsers", *opts)
 
     def write_products(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
-        write_request.project_id = self._project_id
         return self._do_write_data(write_request, "/RetailSaaS/WriteProducts", *opts)
 
     def write_user_events(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
-        write_request.project_id = self._project_id
         return self._do_write_data(write_request, "/RetailSaaS/WriteUserEvents", *opts)
 
     def predict(self, predict_request: PredictRequest, *opts: Option) -> PredictResponse:
-        predict_request.project_id = self._project_id
+        if len(self._project_id) > 0 and len(predict_request.project_id) == 0:
+            predict_request.project_id = self._project_id
         self._check_predict_request(predict_request)
         if len(opts) == 0:
             opts = ()

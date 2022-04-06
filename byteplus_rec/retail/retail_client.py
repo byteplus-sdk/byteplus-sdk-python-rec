@@ -68,7 +68,8 @@ class Client(AbstractClient):
 
     def ack_server_impressions(self, ack_request: AckServerImpressionsRequest,
                                *opts: Option) -> AckServerImpressionsResponse:
-        ack_request.project_id = self._project_id
+        if len(self._project_id) > 0 and len(ack_request.project_id) == 0:
+            ack_request.project_id = self._project_id
         self._check_ack_request(ack_request)
         if len(opts) == 0:
             opts = ()

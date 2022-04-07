@@ -21,6 +21,10 @@ class ClientBuilder(object):
         self._hosts: Optional[List[str]] = None
         self._region: Optional[AbstractRegion] = None
 
+    def account_id(self, account_id: str):
+        self._tenant_id = account_id
+        return self
+
     def tenant_id(self, tenant_id: str):
         self._tenant_id = tenant_id
         return self
@@ -64,13 +68,9 @@ class ClientBuilder(object):
             .hosts(self._hosts) \
             .region(self._region) \
             .project_id(self._project_id) \
-            .use_air_auth(self._is_use_air_auth()) \
             .auth_service(_BYTEPLUS_AUTH_SERVICE) \
             .build()
         return Client(http_client, self._project_id)
-
-    def _is_use_air_auth(self):
-        return utils.is_all_empty_str([self._auth_ak, self._auth_sk]) and utils.none_empty_str([self._air_auth_token])
 
     def _check_required_field(self):
         if utils.is_empty_str(self._project_id):

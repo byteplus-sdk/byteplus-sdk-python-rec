@@ -40,7 +40,7 @@ MODEL_ID = "***********"
 #       hosts
 try:
     client: Client = ClientBuilder() \
-        .tenant_id("***********") \
+        .account_id("***********") \
         .region(Region.SG) \
         .project_id(PROJECT_ID) \
         .auth_ak("***********") \

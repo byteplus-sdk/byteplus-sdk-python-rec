@@ -211,7 +211,7 @@ def _build_finish_product_request() -> WriteDataRequest:
 
 def write_user_events_example():
     # The "WriteXXX" api can transfer max to 2000 items at one request
-    request = _build_write_user_event_request(1)
+    request = _build_write_user_event_request(15)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
         # response: WriteResponse = utils.do_with_retry(client.write_user_events, request, opts, DEFAULT_RETRY_TIMES)
@@ -263,11 +263,11 @@ def _build_finish_user_event_request() -> WriteDataRequest:
     # dates should be passed when finishing others
     date: Date = Date()
     date.year = 2022
-    date.month = 2
-    date.day = 8
+    date.month = 3
+    date.day = 28
     request: FinishWriteDataRequest = FinishWriteDataRequest()
     request.stage = STAGE_TRIAL
-    request.data_dates = [date]
+    request.data_dates.extend([date])
     return request
 
 
@@ -299,7 +299,7 @@ def _build_write_others_request(topic: str) -> WriteDataRequest:
     request = WriteDataRequest()
     request.stage = STAGE_TRIAL
     request.topic = topic
-    request.data = [json.dumps(data)]
+    request.data.append(json.dumps(data))
     # Optional
     # request.extra["extra_info"] = "value"
 
@@ -335,7 +335,7 @@ def _build_finish_other_request(topic: str) -> WriteDataRequest:
     date.day = 8
     request: FinishWriteDataRequest = FinishWriteDataRequest()
     request.stage = STAGE_TRIAL
-    request.data_dates = [date]
+    request.data_dates.extend([date])
     request.topic = topic
     return request
 

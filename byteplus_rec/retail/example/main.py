@@ -15,7 +15,8 @@ from byteplus_rec.retail.retail_client_builder import ClientBuilder
 from byteplus_rec.retail.constant import STAGE_TRIAL
 from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
     mock_device, mock_predict_product
-from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, PredictRequest, AckServerImpressionsRequest
+from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, PredictRequest, \
+    AckServerImpressionsRequest, Date
 from byteplus_rec_core import utils
 from byteplus_rec_core.exception import BizException, NetException
 from byteplus_rec_core.option import Option
@@ -57,6 +58,8 @@ DEFAULT_PREDICT_TIMEOUT = timedelta(milliseconds=800)
 
 DEFAULT_ACK_IMPRESSIONS_TIMEOUT = timedelta(milliseconds=800)
 
+DEFAULT_FINISH_TIMEOUT = timedelta(milliseconds=800)
+
 # default logLevel is Warning
 logging.basicConfig(level=logging.NOTSET)
 
@@ -65,11 +68,26 @@ def main():
     # Write real-time user data
     write_users_example()
 
+    # Finish write real-time user data
+    # finish_write_users_example()
+
     # Write real-time product data
     write_products_example()
 
+    # Finish write real-time product data
+    # finish_write_products_example()
+
     # Write real-time user event data
     write_user_events_example()
+
+    # Finish write real-time user event data
+    # finish_write_user_events_example()
+
+    # Write self defined topic data
+    # write_others_example()
+
+    # Finish write self defined topic data
+    # finish_write_others_example()
 
     # Get recommendation results
     recommend_example()
@@ -112,6 +130,29 @@ def _build_write_user_request(count: int) -> WriteDataRequest:
     return request
 
 
+def finish_write_users_example():
+    # The "FinishXXX" api can mark max to 100 dates at one request
+    request = _build_finish_user_request()
+    opts = _default_opts(DEFAULT_FINISH_TIMEOUT)
+    try:
+        # response: WriteResponse = utils.do_with_retry(client.finish_write_users, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.finish_write_users(request, *opts)
+    except BizException as e:
+        log.error("finish user occur err, msg:%s", e)
+        return
+    if is_upload_success(response.status.code):
+        log.info("finish user success")
+        return
+    log.error("finish user find fail, msg:%s errItems:%s", response.status, response.errors)
+    return
+
+
+def _build_finish_user_request() -> WriteDataRequest:
+    request = FinishWriteDataRequest()
+    request.stage = STAGE_TRIAL
+    return request
+
+
 def write_products_example():
     # The "WriteXXX" api can transfer max to 2000 items at one request
     request = _build_write_product_request(1)
@@ -144,9 +185,33 @@ def _build_write_product_request(count: int) -> WriteDataRequest:
     return request
 
 
+def finish_write_products_example():
+    # The "FinishXXX" api can mark max to 100 dates at one request
+    request = _build_finish_product_request()
+    opts = _default_opts(DEFAULT_FINISH_TIMEOUT)
+    try:
+        # response: WriteResponse = utils.do_with_retry(client.finish_write_products, request, opts,
+        # DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.finish_write_products(request, *opts)
+    except BizException as e:
+        log.error("finish product occur err, msg:%s", e)
+        return
+    if is_upload_success(response.status.code):
+        log.info("finish product success")
+        return
+    log.error("finish product find fail, msg:%s errItems:%s", response.status, response.errors)
+    return
+
+
+def _build_finish_product_request() -> WriteDataRequest:
+    request = FinishWriteDataRequest()
+    request.stage = STAGE_TRIAL
+    return request
+
+
 def write_user_events_example():
     # The "WriteXXX" api can transfer max to 2000 items at one request
-    request = _build_write_user_event_request(1)
+    request = _build_write_user_event_request(15)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
         # response: WriteResponse = utils.do_with_retry(client.write_user_events, request, opts, DEFAULT_RETRY_TIMES)
@@ -173,6 +238,105 @@ def _build_write_user_event_request(count: int) -> WriteDataRequest:
 
     # Optional
     # request.extra["extra_info"] = "value"
+    return request
+
+
+def finish_write_user_events_example():
+    # The "FinishXXX" api can mark max to 100 dates at one request
+    request = _build_finish_user_event_request()
+    opts = _default_opts(DEFAULT_FINISH_TIMEOUT)
+    try:
+        # response: WriteResponse = utils.do_with_retry(client.finish_write_user_events(), request, opts,
+        # DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.finish_write_user_events(request, *opts)
+    except BizException as e:
+        log.error("finish user_event occur err, msg:%s", e)
+        return
+    if is_upload_success(response.status.code):
+        log.info("finish user_event success")
+        return
+    log.error("finish user_event find fail, msg:%s errItems:%s", response.status, response.errors)
+    return
+
+
+def _build_finish_user_event_request() -> WriteDataRequest:
+    # dates should be passed when finishing others
+    date: Date = Date()
+    date.year = 2022
+    date.month = 3
+    date.day = 28
+    request: FinishWriteDataRequest = FinishWriteDataRequest()
+    request.stage = STAGE_TRIAL
+    request.data_dates.extend([date])
+    return request
+
+
+def write_others_example():
+    # The "WriteXXX" api can transfer max to 2000 items at one request
+    # The `topic` is datatype, which specify the type of data users are going to write.
+    # It is temporarily set to "video", the specific value depends on your need.
+    topic = "video"
+    request = _build_write_others_request(topic)
+    opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
+    try:
+        # response: WriteResponse = utils.do_with_retry(client.write_others, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.write_others(request, *opts)
+    except BizException as e:
+        log.error("write others occur err, msg:%s", e)
+        return
+    if is_upload_success(response.status.code):
+        log.info("write others success")
+        return
+    log.error("write others find failure info, msg:%s errItems:%s", response.status, response.errors)
+    return
+
+
+def _build_write_others_request(topic: str) -> WriteDataRequest:
+    data = dict()
+    data["field1"] = 1
+    data["field2"] = "value2"
+
+    request = WriteDataRequest()
+    request.stage = STAGE_TRIAL
+    request.topic = topic
+    request.data.append(json.dumps(data))
+    # Optional
+    # request.extra["extra_info"] = "value"
+
+    return request
+
+
+def finish_write_others_example():
+    # The "FinishXXX" api can mark max to 100 dates at one request
+    # The `topic` is datatype, which specify the type of data users are going to write.
+    # It is temporarily set to "video", the specific value depends on your need.
+    topic = "video"
+    request = _build_finish_other_request(topic)
+    opts = _default_opts(DEFAULT_FINISH_TIMEOUT)
+    try:
+        # response: WriteResponse = utils.do_with_retry(client.finish_write_others, request, opts,
+        # DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.finish_write_others(request, *opts)
+    except BizException as e:
+        log.error("finish others occur err, msg:%s", e)
+        return
+    if is_upload_success(response.status.code):
+        log.info("finish others success")
+        return
+    log.error("finish others find fail, msg:%s errItems:%s", response.status, response.errors)
+    return
+
+
+def _build_finish_other_request(topic: str) -> WriteDataRequest:
+    # dates should be passed when finishing others
+    date: Date = Date()
+    date.year = 2022
+    date.month = 3
+    date.day = 8
+    request: FinishWriteDataRequest = FinishWriteDataRequest()
+    request.stage = STAGE_TRIAL
+    request.data_dates.extend([date])
+    request.topic = topic
     return request
 
 

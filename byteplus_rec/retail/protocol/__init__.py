@@ -7,4 +7,6 @@ from .byteplus_saas_retail_pb2 import (
     PredictResponse,
     AckServerImpressionsRequest,
     AckServerImpressionsResponse,
+    FinishWriteDataRequest,
+    Date
 )

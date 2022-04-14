@@ -416,19 +416,13 @@ def _build_ack_impressions_request(predict_request_id: str, predict_request: Pre
 
 
 def _default_opts(timeout: timedelta) -> tuple:
-    # customer_headers = {}
-    # customer_queries = {}
     return (
         Option.with_timeout(timeout),
         Option.with_request_id(str(uuid.uuid1())),
-        # # Optional.Add a set of customer headers to the request, which will be overwritten by multiple calls.
-        # Option.with_headers(customer_headers),
-        # # Optional. Add a set of customer queries to the request, which will be overwritten by multiple calls.
-        # Option.with_queries(customer_queries),
-        # # Optional. Add a header to an existing custom header collection.
-        # Option.with_header("key", "value"),
-        # # Optional. Add a query to an existing custom query collection.
-        # Option.with_query("key", "value"),
+        # # Optional. Add a header to a custom header collection.
+        # Option.with_http_header("key", "value"),
+        # # Optional. Add a query to a custom query collection.
+        # Option.with_http_query("key", "value"),
         # # Optional. It is expected that the server will process the data for the maximum time.
         # # If the processing time exceeds this time, the server will return the result immediately,
         # # regardless of whether there is any remaining data that has not been processed.

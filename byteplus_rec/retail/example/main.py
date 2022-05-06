@@ -12,7 +12,7 @@ from google.protobuf.message import Message
 from byteplus_rec.region.region import Region
 from byteplus_rec.retail.retail_client import Client
 from byteplus_rec.retail.retail_client_builder import ClientBuilder
-from byteplus_rec.retail.constant import STAGE_TRIAL
+from byteplus_rec.retail.constant import STAGE_INCREMENTAL
 from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
     mock_device, mock_predict_product
 from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, PredictRequest, \
@@ -116,7 +116,7 @@ def write_users_example():
 
 def _build_write_user_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     users = mock_users(count)
 
     user_str_list = [Optional[str]] * len(users)
@@ -149,7 +149,7 @@ def finish_write_users_example():
 
 def _build_finish_user_request() -> WriteDataRequest:
     request = FinishWriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     return request
 
 
@@ -172,7 +172,7 @@ def write_products_example():
 
 def _build_write_product_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     products = mock_products(count)
     product_str_list = [Optional[str]] * len(products)
     for i in range(len(products)):
@@ -205,7 +205,7 @@ def finish_write_products_example():
 
 def _build_finish_product_request() -> WriteDataRequest:
     request = FinishWriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     return request
 
 
@@ -228,7 +228,7 @@ def write_user_events_example():
 
 def _build_write_user_event_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     user_events = mock_user_events(count)
     user_event_str_list = [Optional[str]] * len(user_events)
     for i in range(len(user_events)):
@@ -266,7 +266,7 @@ def _build_finish_user_event_request() -> WriteDataRequest:
     date.month = 3
     date.day = 28
     request: FinishWriteDataRequest = FinishWriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     request.data_dates.extend([date])
     return request
 
@@ -297,7 +297,7 @@ def _build_write_others_request(topic: str) -> WriteDataRequest:
     data["field2"] = "value2"
 
     request = WriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     request.topic = topic
     request.data.append(json.dumps(data))
     # Optional
@@ -334,7 +334,7 @@ def _build_finish_other_request(topic: str) -> WriteDataRequest:
     date.month = 3
     date.day = 8
     request: FinishWriteDataRequest = FinishWriteDataRequest()
-    request.stage = STAGE_TRIAL
+    request.stage = STAGE_INCREMENTAL
     request.data_dates.extend([date])
     request.topic = topic
     return request
@@ -373,7 +373,7 @@ def _build_predict_request() -> PredictRequest:
     scene.offset = 10
 
     ctx = request.context
-    ctx.candidate_product_ids[:] = ["632462", "632463"]
+    ctx.candidate_products.extend([mock_predict_product()])
     ctx.root_product.CopyFrom(mock_predict_product())
     ctx.device.CopyFrom(mock_device())
 

@@ -1,15 +1,14 @@
 import logging
 
-from byteplus_rec.retail.protocol import WriteDataRequest, WriteResponse, PredictRequest, PredictResponse, \
-    AckServerImpressionsRequest, AckServerImpressionsResponse, FinishWriteDataRequest
+from byteplus_rec.content.protocol import WriteDataRequest, WriteResponse, FinishWriteDataRequest
 from byteplus_rec_core.exception import BizException
 from byteplus_rec_core.http_client import HTTPClient
 from byteplus_rec_core.option import Option
-from byteplus_rec.retail.constant import _MAX_WRITE_COUNT, _MAX_FINISH_COUNT, TOPIC_USER, TOPIC_PRODUCT, \
+from byteplus_rec.content.constant import _MAX_WRITE_COUNT, _MAX_FINISH_COUNT, TOPIC_USER, TOPIC_CONTENT, \
     TOPIC_USER_EVENT, USER_URI, PRODUCT_URI, USER_EVENT_URI, OTHERS_URI, FINISH_USER_URI, FINISH_PRODUCT_URI, \
-    FINISH_USER_EVENT_URI, FINISH_OTHERS_URI, PREDICT_URI, ACK_SERVER_IMPRESSIONS_URI
+    FINISH_USER_EVENT_URI, FINISH_OTHERS_URI
 from byteplus_rec_core import utils
-from byteplus_rec.retail.abstract_client import AbstractClient
+from byteplus_rec.content.abstract_client import AbstractClient
 
 log = logging.getLogger(__name__)
 
@@ -28,12 +27,12 @@ class Client(AbstractClient):
         finish_request.topic = TOPIC_USER
         return self._do_finish_data(finish_request, FINISH_USER_URI, *opts)
 
-    def write_products(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
-        write_request.topic = TOPIC_PRODUCT
+    def write_contents(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
+        write_request.topic = TOPIC_CONTENT
         return self._do_write_data(write_request, PRODUCT_URI, *opts)
 
-    def finish_write_products(self, finish_request: FinishWriteDataRequest, *opts: Option) -> WriteResponse:
-        finish_request.topic = TOPIC_PRODUCT
+    def finish_write_contents(self, finish_request: FinishWriteDataRequest, *opts: Option) -> WriteResponse:
+        finish_request.topic = TOPIC_CONTENT
         return self._do_finish_data(finish_request, FINISH_PRODUCT_URI, *opts)
 
     def write_user_events(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
@@ -91,43 +90,6 @@ class Client(AbstractClient):
             raise BizException("topic is empty")
         if len(request.data_dates) > _MAX_FINISH_COUNT:
             raise BizException("Only can receive max to {} items in one request".format(_MAX_FINISH_COUNT))
-
-    def predict(self, predict_request: PredictRequest, *opts: Option) -> PredictResponse:
-        if len(self._project_id) > 0 and len(predict_request.project_id) == 0:
-            predict_request.project_id = self._project_id
-        self._check_predict_request(predict_request)
-        if len(opts) == 0:
-            opts = ()
-        response: PredictResponse = PredictResponse()
-        self._http_client.do_pb_request(PREDICT_URI, predict_request, response, *opts)
-        log.debug("[ByteplusSDK][Predict] rsp:\n%s", response)
-        return response
-
-    @staticmethod
-    def _check_predict_request(request: PredictRequest):
-        if utils.is_empty_str(request.project_id):
-            raise BizException("project id in predict request is empty")
-        if utils.is_empty_str(request.model_id):
-            raise BizException("model id in predict request is empty")
-
-    def ack_server_impressions(self, ack_request: AckServerImpressionsRequest,
-                               *opts: Option) -> AckServerImpressionsResponse:
-        if len(self._project_id) > 0 and len(ack_request.project_id) == 0:
-            ack_request.project_id = self._project_id
-        self._check_ack_request(ack_request)
-        if len(opts) == 0:
-            opts = ()
-        response: AckServerImpressionsResponse = AckServerImpressionsResponse()
-        self._http_client.do_pb_request(ACK_SERVER_IMPRESSIONS_URI, ack_request, response, *opts)
-        log.debug("[ByteplusSDK][AckImpressions] rsp:\n%s", response)
-        return response
-
-    @staticmethod
-    def _check_ack_request(request: AckServerImpressionsRequest):
-        if utils.is_empty_str(request.project_id):
-            raise BizException("project id in ack request is empty")
-        if utils.is_empty_str(request.model_id):
-            raise BizException("model id in ack request is empty")
 
     def release(self):
         self._http_client.shutdown()

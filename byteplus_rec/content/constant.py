@@ -34,9 +34,9 @@ USER_URI = "/ContentSaaS/WriteUsers"
 # FINISH_USER_URI The URL format of finish information
 FINISH_USER_URI = "/ContentSaaS/FinishWriteUsers"
 
-PRODUCT_URI = "/ContentSaaS/WriteContents"
+CONTENT_URI = "/ContentSaaS/WriteContents"
 
-FINISH_PRODUCT_URI = "/ContentSaaS/FinishWriteContents"
+FINISH_CONTENT_URI = "/ContentSaaS/FinishWriteContents"
 
 USER_EVENT_URI = "/ContentSaaS/WriteUserEvents"
 

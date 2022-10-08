@@ -5,7 +5,7 @@ from byteplus_rec_core.exception import BizException
 from byteplus_rec_core.http_client import HTTPClient
 from byteplus_rec_core.option import Option
 from byteplus_rec.content.constant import _MAX_WRITE_COUNT, _MAX_FINISH_COUNT, TOPIC_USER, TOPIC_CONTENT, \
-    TOPIC_USER_EVENT, USER_URI, PRODUCT_URI, USER_EVENT_URI, OTHERS_URI, FINISH_USER_URI, FINISH_PRODUCT_URI, \
+    TOPIC_USER_EVENT, USER_URI, CONTENT_URI, USER_EVENT_URI, OTHERS_URI, FINISH_USER_URI, FINISH_CONTENT_URI, \
     FINISH_USER_EVENT_URI, FINISH_OTHERS_URI
 from byteplus_rec_core import utils
 from byteplus_rec.content.abstract_client import AbstractClient
@@ -29,11 +29,11 @@ class Client(AbstractClient):
 
     def write_contents(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
         write_request.topic = TOPIC_CONTENT
-        return self._do_write_data(write_request, PRODUCT_URI, *opts)
+        return self._do_write_data(write_request, CONTENT_URI, *opts)
 
     def finish_write_contents(self, finish_request: FinishWriteDataRequest, *opts: Option) -> WriteResponse:
         finish_request.topic = TOPIC_CONTENT
-        return self._do_finish_data(finish_request, FINISH_PRODUCT_URI, *opts)
+        return self._do_finish_data(finish_request, FINISH_CONTENT_URI, *opts)
 
     def write_user_events(self, write_request: WriteDataRequest, *opts: Option) -> WriteResponse:
         write_request.topic = TOPIC_USER_EVENT

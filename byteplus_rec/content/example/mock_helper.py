@@ -1,3 +1,4 @@
+import json
 from typing import Optional
 
 
@@ -66,11 +67,12 @@ def mock_content() -> dict:
         "content_owner_rating": 4.5,
         "content_owner_name": "comedy movie commentary",
         "collection_id": "1342",
-        "tags": '["New","Trending"]',
-        "topic_tags": '["Political","Latest"]',
+        "tags": '["New","Trending"]',  # Json Array, use json.dumps()
+        "topic_tags": '["Political","Latest"]',  # Json Array, use json.dumps()
         "image_urls": '["https://images-na.ssl-images-amazon.com/images/I/81WmojBxvbL._AC_UL1500_.jpg"]',
+        # Json Array, use json.dumps()
         "detail_pic_num": 5,
-        "video_urls": '["https://test_video.mov"]',
+        "video_urls": '["https://test_video.mov"]',  # Json Array, use json.dumps()
         "user_rating": 4.9,
         "views_count": 10000,
         "comments_count": 100,
@@ -79,14 +81,14 @@ def mock_content() -> dict:
         "save_count": 50,
         "current_price": 1300,
         "original_price": 1600,
-        "available_location": '["Cafe 101"]',
+        "available_location": '["Cafe 101"]',  # Json Array, use json.dumps()
         "publish_timestamp": 1660035734,
         "update_timestamp": 1660035734,
         "copyright_start_timestamp": 1660035734,
         "copyright_end_timestamp": 1760035734,
         "is_paid_content": True,
         "language": "English",
-        "related_content_ids": '["632462","632463"]',
+        "related_content_ids": '["632462","632463"]',  # Json Array, use json.dumps()
         "sold_count": 60,
         "source": "self",
 

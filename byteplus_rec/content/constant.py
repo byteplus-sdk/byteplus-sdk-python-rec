@@ -45,3 +45,7 @@ FINISH_USER_EVENT_URI = "/ContentSaaS/FinishWriteUserEvents"
 OTHERS_URI = "/ContentSaaS/WriteOthers"
 
 FINISH_OTHERS_URI = "/ContentSaaS/FinishWriteOthers"
+
+PREDICT_URI = "/ContentSaaS/Predict"
+
+ACK_SERVER_IMPRESSIONS_URI = "/ContentSaaS/AckServerImpressions"

@@ -1,6 +1,7 @@
 from abc import abstractmethod
 
-from byteplus_rec.content.protocol import WriteDataRequest, WriteResponse, FinishWriteDataRequest
+from byteplus_rec.content.protocol import WriteDataRequest, WriteResponse, FinishWriteDataRequest, PredictRequest, \
+    PredictResponse, AckServerImpressionsRequest, AckServerImpressionsResponse
 from byteplus_rec_core.option import Option
 
 
@@ -73,6 +74,37 @@ class AbstractClient(object):
         Recording that some data has been written, the topic of these data is set by users.
         Mark at most 100 dates at a time
         No need to finish real-time data, the system will automatically finish when entering the next day
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def predict(self, predict_request: PredictRequest, *opts: Option) -> PredictResponse:
+        """
+        Gets the list of contents (ranked).
+        The updated user data will take effect in 24 hours.
+        The updated content data will take effect in 30 minutes.
+        Depending on how (realtime or batch) the UserEvents are sent back, it will
+        be fed into the models and take effect after that.
+        """
+        raise NotImplementedError
+
+    @abstractmethod
+    def ack_server_impressions(self, ack_request: AckServerImpressionsRequest,
+                               *opts: Option) -> AckServerImpressionsResponse:
+        """
+        Sends back the actual content list shown to the users based on the
+        customized changes from `PredictResponse`.
+        example: our Predict call returns the list of items [1, 2, 3, 4].
+        Your custom logic have decided that content 3 has been sold out and
+        content 10 needs to be inserted before 2 based on some promotion rules,
+        the AckServerImpressionsRequest content items should look like
+        [
+            {id:1, altered_reason: "kept", rank:1},
+            {id:10, altered_reason: "inserted", rank:2},
+            {id:2, altered_reason: "kept", rank:3},
+            {id:4, altered_reason: "kept", rank:4},
+            {id:3, altered_reason: "filtered", rank:0},
+        ].
         """
         raise NotImplementedError
 

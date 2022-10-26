@@ -12,7 +12,7 @@ from google.protobuf.message import Message
 from byteplus_rec.region.region import Region
 from byteplus_rec.retail.retail_client import Client
 from byteplus_rec.retail.retail_client_builder import ClientBuilder
-from byteplus_rec.retail.constant import STAGE_INCREMENTAL
+from byteplus_rec.retail.constant import STAGE_TRIAL, STAGE_PRODUCTION, STAGE_INCREMENTAL
 from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
     mock_device, mock_predict_product
 from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, PredictRequest, \

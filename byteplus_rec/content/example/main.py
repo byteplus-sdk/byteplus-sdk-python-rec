@@ -10,18 +10,18 @@ from typing import Optional
 from google.protobuf.message import Message
 
 from byteplus_rec.region.region import Region
-from byteplus_rec.retail.retail_client import Client
-from byteplus_rec.retail.retail_client_builder import ClientBuilder
-from byteplus_rec.retail.constant import STAGE_TRIAL, STAGE_PRODUCTION, STAGE_INCREMENTAL
-from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
-    mock_device, mock_predict_product
-from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, PredictRequest, \
-    AckServerImpressionsRequest, Date
-from byteplus_rec_core import utils
+from byteplus_rec.content.content_client import Client
+from byteplus_rec.content.content_client_builder import ClientBuilder
+from byteplus_rec.content.constant import STAGE_TRIAL, STAGE_PRODUCTION, STAGE_INCREMENTAL
+from byteplus_rec.content.example.mock_helper import mock_users, mock_contents, mock_user_events, mock_predict_content, \
+    mock_device
+from byteplus_rec.content.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, Date,\
+    Scene, PredictRequest, PredictResponse, PredictResult, AckServerImpressionsRequest, AckServerImpressionsResponse
 from byteplus_rec_core.exception import BizException, NetException
 from byteplus_rec_core.http_caller import Config
 from byteplus_rec_core.metrics.metrics_option import MetricsCfg
 from byteplus_rec_core.option import Option
+from byteplus_rec_core import utils
 from byteplus_rec_core.status_helper import is_upload_success, is_success
 
 log = logging.getLogger(__name__)
@@ -109,11 +109,11 @@ def main():
     # Finish write real-time user data
     # finish_write_users_example()
 
-    # Write real-time product data
-    write_products_example()
+    # Write real-time content data
+    write_contents_example()
 
-    # Finish write real-time product data
-    # finish_write_products_example()
+    # Finish write real-time content data
+    # finish_write_contents_example()
 
     # Write real-time user event data
     write_user_events_example()
@@ -191,57 +191,57 @@ def _build_finish_user_request() -> WriteDataRequest:
     return request
 
 
-def write_products_example():
+def write_contents_example():
     # The "WriteXXX" api can transfer max to 2000 items at one request
-    request = _build_write_product_request(1)
+    request = _build_write_content_request(1)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
-        # response: WriteResponse = utils.do_with_retry(client.write_products, request, opts, DEFAULT_RETRY_TIMES)
-        response: WriteResponse = client.write_products(request, *opts)
+        # response: WriteResponse = utils.do_with_retry(client.write_contents, request, opts, DEFAULT_RETRY_TIMES)
+        response: WriteResponse = client.write_contents(request, *opts)
     except BizException as e:
-        log.error("write product occur err, msg:%s", e)
+        log.error("write content occur err, msg:%s", e)
         return
     if is_upload_success(response.status.code):
-        log.info("write product success")
+        log.info("write content success")
         return
-    log.error("write product find fail, msg:%s errItems:%s", response.status, response.errors)
+    log.error("write content find fail, msg:%s errItems:%s", response.status, response.errors)
     return
 
 
-def _build_write_product_request(count: int) -> WriteDataRequest:
+def _build_write_content_request(count: int) -> WriteDataRequest:
     request = WriteDataRequest()
     request.stage = STAGE_INCREMENTAL
-    products = mock_products(count)
-    product_str_list = [Optional[str]] * len(products)
-    for i in range(len(products)):
-        product_str_list[i] = json.dumps(products[i])
+    contents = mock_contents(count)
+    content_str_list = [Optional[str]] * len(contents)
+    for i in range(len(contents)):
+        content_str_list[i] = json.dumps(contents[i])
 
-    request.data.extend(product_str_list)
+    request.data.extend(content_str_list)
 
     # Optional
     # request.extra["extra_info"] = "value"
     return request
 
 
-def finish_write_products_example():
+def finish_write_contents_example():
     # The "FinishXXX" api can mark max to 100 dates at one request
-    request = _build_finish_product_request()
+    request = _build_finish_content_request()
     opts = _default_opts(DEFAULT_FINISH_TIMEOUT)
     try:
-        # response: WriteResponse = utils.do_with_retry(client.finish_write_products, request, opts,
+        # response: WriteResponse = utils.do_with_retry(client.finish_write_contents, request, opts,
         # DEFAULT_RETRY_TIMES)
-        response: WriteResponse = client.finish_write_products(request, *opts)
+        response: WriteResponse = client.finish_write_contents(request, *opts)
     except BizException as e:
-        log.error("finish product occur err, msg:%s", e)
+        log.error("finish content occur err, msg:%s", e)
         return
     if is_upload_success(response.status.code):
-        log.info("finish product success")
+        log.info("finish content success")
         return
-    log.error("finish product find fail, msg:%s errItems:%s", response.status, response.errors)
+    log.error("finish content find fail, msg:%s errItems:%s", response.status, response.errors)
     return
 
 
-def _build_finish_product_request() -> WriteDataRequest:
+def _build_finish_content_request() -> WriteDataRequest:
     request = FinishWriteDataRequest()
     request.stage = STAGE_INCREMENTAL
     return request
@@ -249,7 +249,7 @@ def _build_finish_product_request() -> WriteDataRequest:
 
 def write_user_events_example():
     # The "WriteXXX" api can transfer max to 2000 items at one request
-    request = _build_write_user_event_request(15)
+    request = _build_write_user_event_request(1)
     opts = _default_opts(DEFAULT_WRITE_TIMEOUT)
     try:
         # response: WriteResponse = utils.do_with_retry(client.write_user_events, request, opts, DEFAULT_RETRY_TIMES)
@@ -369,8 +369,8 @@ def _build_finish_other_request(topic: str) -> WriteDataRequest:
     # dates should be passed when finishing others
     date: Date = Date()
     date.year = 2022
-    date.month = 3
-    date.day = 8
+    date.month = 8
+    date.day = 1
     request: FinishWriteDataRequest = FinishWriteDataRequest()
     request.stage = STAGE_INCREMENTAL
     request.data_dates.extend([date])
@@ -392,8 +392,8 @@ def recommend_example():
     log.info("predict success")
     # The items, which is eventually shown to user,
     # should send back to Bytedance for deduplication
-    altered_products = do_something_with_predict_result(predict_response.value)
-    ack_request = _build_ack_impressions_request(predict_response.request_id, predict_request, altered_products)
+    altered_contents = do_something_with_predict_result(predict_response.content_value)
+    ack_request = _build_ack_impressions_request(predict_response.request_id, predict_request, altered_contents)
     ack_opts = _default_opts(DEFAULT_ACK_IMPRESSIONS_TIMEOUT)
     try:
         utils.do_with_retry(client.ack_server_impressions, ack_request, ack_opts, DEFAULT_RETRY_TIMES)
@@ -410,9 +410,9 @@ def _build_predict_request() -> PredictRequest:
     scene = request.scene
     scene.offset = 10
 
-    ctx = request.context
-    ctx.candidate_products.extend([mock_predict_product()])
-    ctx.root_product.CopyFrom(mock_predict_product())
+    ctx = request.content_context
+    ctx.candidate_contents.extend([mock_predict_content()])
+    ctx.root_content.CopyFrom(mock_predict_content())
     ctx.device.CopyFrom(mock_device())
 
     # request.extra["extra_info"] = "extra"
@@ -424,25 +424,25 @@ def do_something_with_predict_result(predict_result):
     # such as filter, insert other items, sort again, etc.
     # The list of goods finally displayed to user and the filtered goods
     # should be sent back to bytedance for deduplication
-    return conv_to_altered_products(predict_result.response_products)
+    return conv_to_altered_contents(predict_result.response_contents)
 
 
-def conv_to_altered_products(product_results):
-    if product_results is None or len(product_results) == 0:
+def conv_to_altered_contents(content_results):
+    if content_results is None or len(content_results) == 0:
         return
-    size = len(product_results)
-    altered_products = [Optional[AckServerImpressionsRequest.AlteredProduct]] * size
+    size = len(content_results)
+    altered_contents = [Optional[AckServerImpressionsRequest.AlteredContent]] * size
     for i in range(size):
-        product_result = product_results[i]
-        altered_product = AckServerImpressionsRequest.AlteredProduct()
-        altered_product.altered_reason = "kept"
-        altered_product.product_id = product_result.product_id
-        altered_product.rank = product_result.rank
-        altered_products[i] = altered_product
-    return altered_products
+        content_result = content_results[i]
+        altered_content = AckServerImpressionsRequest.AlteredContent()
+        altered_content.altered_reason = "kept"
+        altered_content.content_id = content_result.content_id
+        altered_content.rank = content_result.rank
+        altered_contents[i] = altered_content
+    return altered_contents
 
 
-def _build_ack_impressions_request(predict_request_id: str, predict_request: PredictRequest, altered_products: list):
+def _build_ack_impressions_request(predict_request_id: str, predict_request: PredictRequest, altered_contents: list):
     request = AckServerImpressionsRequest()
     request.model_id = predict_request.model_id
     request.predict_request_id = predict_request_id
@@ -452,7 +452,7 @@ def _build_ack_impressions_request(predict_request_id: str, predict_request: Pre
     request.traffic_source = "byteplus"
     scene: Message = request.scene
     scene.CopyFrom(predict_request.scene)
-    request.altered_products.extend(altered_products)
+    request.altered_contents.extend(altered_contents)
 
     # request.extra["ip"] = "127.0.0.1"
     return request

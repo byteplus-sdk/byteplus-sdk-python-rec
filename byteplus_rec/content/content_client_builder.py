@@ -1,6 +1,6 @@
 from typing import Optional, List
 
-from byteplus_rec.retail.retail_client import Client
+from byteplus_rec.content.content_client import Client
 from byteplus_rec_core.exception import BizException
 from byteplus_rec_core.host_availabler_factory import HostAvailablerFactory
 from byteplus_rec_core.http_caller import Config

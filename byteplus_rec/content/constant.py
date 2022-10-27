@@ -23,29 +23,29 @@ STAGE_INCREMENTAL_DAILY = "incremental_sync_daily"
 TOPIC_USER = "user"
 
 # TOPIC_PRODUCT is the type of data when WriteProducts or FinishWriteProducts
-TOPIC_PRODUCT = "goods"
+TOPIC_CONTENT = "content"
 
 # TOPIC_USER_EVENT is the type of data when WriteUserEvents or FinishWriteUserEvents
 TOPIC_USER_EVENT = "behavior"
 
 # USER_URI in user topic, url path is end with WriteUsers
-USER_URI = "/RetailSaaS/WriteUsers"
+USER_URI = "/ContentSaaS/WriteUsers"
 
 # FINISH_USER_URI The URL format of finish information
-FINISH_USER_URI = "/RetailSaaS/FinishWriteUsers"
+FINISH_USER_URI = "/ContentSaaS/FinishWriteUsers"
 
-PRODUCT_URI = "/RetailSaaS/WriteProducts"
+CONTENT_URI = "/ContentSaaS/WriteContents"
 
-FINISH_PRODUCT_URI = "/RetailSaaS/FinishWriteProducts"
+FINISH_CONTENT_URI = "/ContentSaaS/FinishWriteContents"
 
-USER_EVENT_URI = "/RetailSaaS/WriteUserEvents"
+USER_EVENT_URI = "/ContentSaaS/WriteUserEvents"
 
-FINISH_USER_EVENT_URI = "/RetailSaaS/FinishWriteUserEvents"
+FINISH_USER_EVENT_URI = "/ContentSaaS/FinishWriteUserEvents"
 
-OTHERS_URI = "/RetailSaaS/WriteOthers"
+OTHERS_URI = "/ContentSaaS/WriteOthers"
 
-FINISH_OTHERS_URI = "/RetailSaaS/FinishWriteOthers"
+FINISH_OTHERS_URI = "/ContentSaaS/FinishWriteOthers"
 
-PREDICT_URI = "/RetailSaaS/Predict"
+PREDICT_URI = "/ContentSaaS/Predict"
 
-ACK_SERVER_IMPRESSIONS_URI = "/RetailSaaS/AckServerImpressions"
+ACK_SERVER_IMPRESSIONS_URI = "/ContentSaaS/AckServerImpressions"

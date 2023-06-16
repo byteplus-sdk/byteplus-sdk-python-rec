@@ -21,10 +21,11 @@ def mock_user() -> dict:
         "activation_channel": "AppStore",
         "membership_level": "silver",
         "registration_timestamp": 1623593487,
-        "location_city": "Kirkland",
-        "location_country": "USA",
-        "location_district_or_area": "King County",
-        "location_postcode": "98033",
+        "city": "Kirkland",
+        "country": "USA",
+        "district": "King County",
+        "province": "Texas",
+        "language": "English"
 
         # your custom field
         # "custom_field": "custom_value"
@@ -45,27 +46,24 @@ def mock_products(count: int) -> list:
 def mock_product() -> dict:
     product = {
         "product_id": "632461",
-        "category": '[{"category_depth":1,"category_nodes":[{"id_or_name":"Shoes"}]},'
-                    '{"category_depth":2,"category_nodes":[{"id_or_name":"Men\'s Shoes"}]}]',  # Json Array
+        "categories": '[{"category_depth":1,"category_nodes":[{"id_or_name":"Shoes"}]},'
+                      '{"category_depth":2,"category_nodes":[{"id_or_name":"Mens Shoes"}]}]',  # Json Array
         "brands": "Adidas",
-        "is_recommendable": True,
-        "title": "adidas Men's Yeezy Boost 350 V2 Grey/Borang/Dgsogr",
-        "price_current_price": 49900,
-        "price_origin_price": 69900,
-        "quality_score": 4.4,
-        "tags": '["New Product","Summer Product"]', # Json Array
-        "display_cover_multimedia_url": "https://images-na.ssl-images-amazon.com/images/I/81WmojBxvbL._AC_UL1500_.jpg",
-        "display_listing_page_display_type": "image",
-        "display_listing_page_display_tags": '["best seller","hot sales"]',  # Json Array
-        "display_detail_page_display_tags": '["New Product","Summer Product"]',  # Json Array
+        "is_recommendable": 1,
+        "title": "adidas Mens Yeezy Boost 350 V2 Grey/Borang/Dgsogr",
+        "current_price": 499.50,
+        "original_price": 699.50,
+        "tags": '["New Product","Summer Product"]',
+        "display_cover_multimedia_url": '["www.demo.jpg"]',  # json array.
         "seller_id": "43485",
-        "seller_seller_level": "1",
-        "seller_seller_rating": 3.5,
-        "product_spec_product_group_id": "1356",
-        "product_spec_user_rating": 0.25,
-        "product_spec_comment_count": 100,
-        "product_spec_source": "self",
-        "product_spec_publish_timestamp": 1623193487,
+        "seller_level": "1",
+        "seller_rating": 3.5,
+        "product_group_id": "1356",
+        "user_rating": 0.25,
+        "comment_count": 100,
+        "source": "self",
+        "publish_timestamp": 1623193487,
+        "sold_count": 10
 
         # your custom field
         # "custom_field": "custom_value"
@@ -85,32 +83,29 @@ def mock_user_events(count: int) -> list:
 def mock_user_event() -> dict:
     user_event = {
         "user_id": "1457789",
-        "event_type": "purchase",
-        "event_timestamp": 1649650452,
-        "scene": "product detail page",
-        "scene_page_number": 2,
-        "scene_offset": 10,
+        "event_type": "click",
+        "event_timestamp": 1686883465,
+        "scene_name": "product detail page",
+        "page_number": 2,
+        "offset": 10,
         "product_id": "632461",
-        "device_platform": "app",
-        "device_os_type": "android",
-        "device_app_version": "9.2.0",
-        "device_device_model": "huawei-mate30",
-        "device_device_brand": "huawei",
-        "device_os_version": "10",
-        "device_browser_type": "chrome",
-        "device_user_agent": "Mozilla/5.0 (Linux; Android 10; TAS-AN00; HMSCore 5.3.0.312)"
-                             " AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 HuaweiBrowser"
-                             "/11.0.8.303 Mobile Safari/537.36",
-        "device_network": "3g",
-        "context_query": "iPad",
-        "context_root_product_id": "441356",
-        "attribution_token": "eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW"
-                             "1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ",
-        "rec_info": "CiRiMjYyYjM1YS0xOTk1LTQ5YmMtOGNkNS1mZTVmYTczN2FkNDASJAobcmVjZW50X2hvdF9jbGlja3NfcmV0cmlldm"
-                    "VyFQAAAAAYDxoKCgNjdHIdog58PBoKCgNjdnIdANK2OCIHMjcyNTgwMg",
+        "platform": "app",
+        "os_type": "android",
+        "app_version": "9.2.0",
+        "device_model": "huawei-mate30",
+        "os_version": "10",
+        "network": "3g",
+        "query": "iPad",
+        "parent_product_id": "441356",
+        "attribution_token": "eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkb",
         "traffic_source": "self",
         "purchase_count": 20,
-        "detail_page_stay_time": 10,  # 10 second
+        "paid_price": 100.12,
+        "currency": "USD",
+        "city": "Kirkland",
+        "country": "USA",
+        "district": "King County",
+        "province": "Texas"
 
         # your custom field
         # "custom_field": "custom_value"

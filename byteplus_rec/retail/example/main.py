@@ -68,8 +68,9 @@ MODEL_ID = "***********"
 #         .account_id("***********") \
 #         .region(Region.SG) \
 #         .project_id(PROJECT_ID) \
-#         .auth_ak("***********") \
-#         .auth_sk("***********") \
+#         .auth_ak("***********") \ # Access Key, used to generate request signature. Saas Standard projects should use.
+#         .auth_sk("***********") \ # Secure Key, used to generate request signature. Saas Standard projects should use.
+# #         .air_auth_token("***********") \ # The token of this project. Saas Premium projects should use.
 #         .keep_alive(True) \
 #         .caller_config(caller_config) \
 #         .metrics_config(metrics_config) \

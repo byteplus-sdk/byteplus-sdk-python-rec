@@ -117,51 +117,6 @@ def mock_user_event() -> dict:
 def mock_predict_product() -> Product:
     product = Product()
     product.product_id = "632461"
-    product.is_recommendable = 1
-    product.title = "adidas Men's Yeezy Boost 350 V2 Grey/Borang/Dgsogr"
-    product.quality_score = 4.4
-    product.tags.extend(["New Product", "Summer Product"])
-
-    category1 = product.categories.add()
-    category1.category_depth = 1
-    category1_node1 = category1.category_nodes.add()
-    category1_node1.id_or_name = "Shoes"
-    category2 = product.categories.add()
-    category2.category_depth = 1
-    category2_node1 = category2.category_nodes.add()
-    category2_node1.id_or_name = "Men's Shoes"
-
-    brand1 = product.brands.add()
-    brand1.brand_depth = 1
-    brand1.id_or_name = "Adidas"
-    brand2 = product.brands.add()
-    brand2.brand_depth = 2
-    brand2.id_or_name = "Yeezy"
-
-    price = product.price
-    price.current_price = 49900
-    price.origin_price = 69900
-
-    display = product.display
-    display.detail_page_display_tags.extend(["FreeShipping", "Return in 7 days without any reasons"])
-    display.listing_page_display_tags.extend(["best seller", "hot sales"])
-    display.listing_page_display_type = "image"
-    display.cover_multimedia_url = "https://images-na.ssl-images-amazon.com/images/I/81WmojBxvbL._AC_UL1500_.jpg"
-
-    spec = product.product_spec
-    spec.product_group_id = "1356"
-    spec.user_rating = 0.25
-    spec.comment_count = 100
-    spec.source = "self"
-    spec.publish_timestamp = 1623193487
-
-    seller = product.seller
-    seller.id = "43485"
-    seller.seller_level = "1"
-    seller.seller_rating = 3.5
-
-    # product.extra["count"] = "20"
-
     return product
 
 

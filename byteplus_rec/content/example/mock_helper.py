@@ -122,44 +122,6 @@ def mock_user_event() -> dict:
 def mock_predict_content() -> Content:
     content = Content()
     content.content_id = "632461"
-    content.is_recommendable = 1
-    content.categories = '[{"category_depth":1,"category_nodes":[{"id_or_name":"Movie"}]},{"category_depth":2,'
-    '"category_nodes":[{"id_or_name":"Comedy"}]}]'
-    content.content_type = "video"
-    content.video_duration = 120000
-    content.content_title = "Green Book Movie Explanation"
-    content.description = "A brief summary of the main content of the Green Book movie"
-    content.content_owner = "1457789"
-    content.content_owner_followers = 25
-    content.content_owner_rating = 4.5
-    content.content_owner_name = "comedy movie commentary"
-    content.collection_id = "1342"
-    content.tags = '["New","Trending"]'
-    content.topic_tags = '["Political","Latest"]'
-    content.image_urls = '["https://images-na.ssl-images-amazon.com/images/I/81WmojBxvbL._AC_UL1500_.jpg"]'
-    content.detail_pic_num = 5
-    content.video_urls = '["https://test_video.mov"]'
-    content.user_rating = 4.9
-    content.views_count = 10000
-    content.comments_count = 100
-    content.likes_count = 10
-    content.shares_count = 50
-    content.save_count = 50
-    content.current_price = 1300
-    content.original_price = 1600
-    content.available_location = '["Cafe 101"]'
-    content.publish_timestamp = 1660035734
-    content.update_timestamp = 1660035734
-    content.copyright_start_timestamp = 1660035734
-    content.copyright_end_timestamp = 1760035734
-    content.is_paid_content = True
-    content.language = "English"
-    content.related_content_ids = '["632462","632463"]'
-    content.sold_count = 60
-    content.source = "self"
-
-    # content.extra["additionalField"] = "additionalValue"
-
     return content
 
 

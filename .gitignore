@@ -244,5 +244,6 @@ venv
 
 /node_modules
 package*.json
-/byteplus_rec/content/dev_test/
+
 /byteplus_rec/retail/dev_test/
+/byteplus_rec/content/dev_test/

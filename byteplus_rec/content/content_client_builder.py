@@ -95,6 +95,7 @@ class ClientBuilder(object):
             .auth_sk(self._auth_sk) \
             .schema(self._schema) \
             .hosts(self._hosts) \
+            .main_host(self._main_host) \
             .region(self._region) \
             .use_air_auth(self._is_use_air_auth()) \
             .auth_service(_BYTEPLUS_AUTH_SERVICE) \

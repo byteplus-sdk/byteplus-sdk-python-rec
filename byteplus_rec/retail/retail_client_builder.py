@@ -22,6 +22,7 @@ class ClientBuilder(object):
         self._auth_sk: Optional[str] = ""
         self._schema: Optional[str] = ""
         self._hosts: Optional[List[str]] = None
+        self._main_host: Optional[str] = ""
         self._region: Optional[AbstractRegion] = None
         self._keep_alive: Optional[bool] = False
         self._caller_config: Optional[Config] = None
@@ -60,6 +61,10 @@ class ClientBuilder(object):
         self._hosts = hosts
         return self
 
+    def main_host(self, main_host: str):
+        self._main_host = main_host
+        return self
+
     def region(self, region: AbstractRegion):
         self._region = region
         return self
@@ -90,6 +95,7 @@ class ClientBuilder(object):
             .auth_sk(self._auth_sk) \
             .schema(self._schema) \
             .hosts(self._hosts) \
+            .main_host(self._main_host) \
             .region(self._region) \
             .use_air_auth(self._is_use_air_auth()) \
             .auth_service(_BYTEPLUS_AUTH_SERVICE) \

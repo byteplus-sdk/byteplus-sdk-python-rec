@@ -22,6 +22,7 @@ class ClientBuilder(object):
         self._auth_sk: Optional[str] = ""
         self._schema: Optional[str] = ""
         self._hosts: Optional[List[str]] = None
+        self._main_host: Optional[str] = None
         self._region: Optional[AbstractRegion] = None
         self._keep_alive: Optional[bool] = False
         self._caller_config: Optional[Config] = None
@@ -58,6 +59,10 @@ class ClientBuilder(object):
 
     def hosts(self, hosts: list):
         self._hosts = hosts
+        return self
+
+    def main_host(self, main_host: str):
+        self._main_host = main_host
         return self
 
     def region(self, region: AbstractRegion):

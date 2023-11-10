@@ -1,3 +1,25 @@
+# [](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.7...v) (2023-11-10)
+
+
+
+## [1.0.7](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.6...v1.0.7) (2023-11-10)
+
+
+### Bug Fixes
+
+* fix readme doc links 
+* update altered_reason field description 
+
+
+### Features
+
+* fix mainhost bug 
+* support mainhost 
+* support set mainhost 
+* support set mainhost 
+
+
+
 ## [1.0.6](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.5...v1.0.6) (2023-08-28)
 
 

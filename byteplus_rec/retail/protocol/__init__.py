@@ -5,6 +5,7 @@ from .byteplus_saas_retail_pb2 import (
     Product,
     PredictFeature,
     PredictFilter,
+    PredictFilterItem,
     PredictRequest,
     PredictResponse,
     StringArray,

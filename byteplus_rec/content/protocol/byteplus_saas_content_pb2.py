@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x62yteplus_saas_content.proto\x12\x1e\x62ytedance.byteplus.rec.content\"8\n\x06Status\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0f\n\x07success\x18\x03 \x01(\x08\"0\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\"\x84\x01\n\x16\x46inishWriteDataRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\r\n\x05stage\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t\x12\x38\n\ndata_dates\x18\n \x03(\x0b\x32$.bytedance.byteplus.rec.content.Date\"*\n\tDataError\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"\x82\x01\n\rWriteResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status\x12\x39\n\x06\x65rrors\x18\x02 \x03(\x0b\x32).bytedance.byteplus.rec.content.DataError\"\xcc\x01\n\x10WriteDataRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\r\n\x05stage\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\n \x03(\t\x12J\n\x05\x65xtra\x18\x64 \x03(\x0b\x32;.bytedance.byteplus.rec.content.WriteDataRequest.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb2\x04\n\x07\x43ontent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x14\n\x0c\x63ontent_type\x18\x02 \x01(\t\x12\x18\n\x10is_recommendable\x18\x03 \x01(\x05\x12\x10\n\x08language\x18\x04 \x01(\t\x12\x15\n\rcontent_title\x18\x05 \x01(\t\x12\x12\n\ncategories\x18\x06 \x01(\t\x12\x0c\n\x04tags\x18\x07 \x01(\t\x12\x15\n\rcollection_id\x18\x08 \x01(\t\x12\x19\n\x11publish_timestamp\x18\t \x01(\x03\x12\x18\n\x10\x63ontent_owner_id\x18\n \x01(\t\x12\x16\n\x0evideo_duration\x18\x0b \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x0c \x01(\t\x12\x19\n\x11linked_product_id\x18\r \x01(\t\x12\x12\n\nvideo_urls\x18\x0e \x01(\t\x12\x12\n\nimage_urls\x18\x0f \x01(\t\x12\x13\n\x0buser_rating\x18\x10 \x01(\x02\x12\x17\n\x0fis_paid_content\x18\x11 \x01(\x08\x12\x0e\n\x06source\x18\x12 \x01(\t\x12\x15\n\rcurrent_price\x18\x13 \x01(\x02\x12\x16\n\x0eoriginal_price\x18\x14 \x01(\x02\x12\x41\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x32.bytedance.byteplus.rec.content.Content.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"@\n\x05Scene\x12\x12\n\nscene_name\x18\x01 \x01(\t\x12\x13\n\x0bpage_number\x18\x02 \x01(\x05\x12\x0e\n\x06offset\x18\x03 \x01(\x05\"\xbb\x01\n\x06\x44\x65vice\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\x0f\n\x07os_type\x18\x02 \x01(\t\x12\x13\n\x0b\x61pp_version\x18\x03 \x01(\t\x12\x14\n\x0c\x64\x65vice_model\x18\x04 \x01(\t\x12\x14\n\x0c\x64\x65vice_brand\x18\x05 \x01(\t\x12\x12\n\nos_version\x18\x06 \x01(\t\x12\x14\n\x0c\x62rowser_type\x18\x07 \x01(\t\x12\x12\n\nuser_agent\x18\x08 \x01(\t\x12\x0f\n\x07network\x18\t \x01(\t\"\x9c\x05\n\x0ePredictRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08model_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\n \x01(\t\x12\x0c\n\x04size\x18\x0b \x01(\x05\x12\x34\n\x05scene\x18\x0c \x01(\x0b\x32%.bytedance.byteplus.rec.content.Scene\x12O\n\x0f\x63ontent_context\x18\x0e \x01(\x0b\x32\x36.bytedance.byteplus.rec.content.PredictRequest.Context\x12H\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x39.bytedance.byteplus.rec.content.PredictRequest.ExtraEntry\x1a\xc5\x02\n\x07\x43ontext\x12=\n\x0croot_content\x18\x01 \x01(\x0b\x32\'.bytedance.byteplus.rec.content.Content\x12\x36\n\x06\x64\x65vice\x18\x02 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Device\x12\x43\n\x12\x63\x61ndidate_contents\x18\x03 \x03(\x0b\x32\'.bytedance.byteplus.rec.content.Content\x12?\n\x07\x66\x65\x61ture\x18\x04 \x01(\x0b\x32..bytedance.byteplus.rec.content.PredictFeature\x12=\n\x06\x66ilter\x18\x05 \x01(\x0b\x32-.bytedance.byteplus.rec.content.PredictFilter\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xf0\n\n\x0ePredictFeature\x12Y\n\x0estring_feature\x18\x01 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFeature.StringFeatureEntry\x12S\n\x0bint_feature\x18\x02 \x03(\x0b\x32>.bytedance.byteplus.rec.content.PredictFeature.IntFeatureEntry\x12W\n\rfloat_feature\x18\x03 \x03(\x0b\x32@.bytedance.byteplus.rec.content.PredictFeature.FloatFeatureEntry\x12Y\n\x0e\x64ouble_feature\x18\x04 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFeature.DoubleFeatureEntry\x12\x64\n\x14string_array_feature\x18\x05 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.PredictFeature.StringArrayFeatureEntry\x12^\n\x11int_array_feature\x18\x06 \x03(\x0b\x32\x43.bytedance.byteplus.rec.content.PredictFeature.IntArrayFeatureEntry\x12\x62\n\x13\x66loat_array_feature\x18\x07 \x03(\x0b\x32\x45.bytedance.byteplus.rec.content.PredictFeature.FloatArrayFeatureEntry\x12\x64\n\x14\x64ouble_array_feature\x18\x08 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.PredictFeature.DoubleArrayFeatureEntry\x1a\x34\n\x12StringFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x31\n\x0fIntFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x33\n\x11\x46loatFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x34\n\x12\x44oubleFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a\x66\n\x17StringArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.StringArray:\x02\x38\x01\x1a`\n\x14IntArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x37\n\x05value\x18\x02 \x01(\x0b\x32(.bytedance.byteplus.rec.content.IntArray:\x02\x38\x01\x1a\x64\n\x16\x46loatArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x39\n\x05value\x18\x02 \x01(\x0b\x32*.bytedance.byteplus.rec.content.FloatArray:\x02\x38\x01\x1a\x66\n\x17\x44oubleArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.DoubleArray:\x02\x38\x01\"\xcf\n\n\rPredictFilter\x12V\n\rstring_filter\x18\x01 \x03(\x0b\x32?.bytedance.byteplus.rec.content.PredictFilter.StringFilterEntry\x12P\n\nint_filter\x18\x02 \x03(\x0b\x32<.bytedance.byteplus.rec.content.PredictFilter.IntFilterEntry\x12T\n\x0c\x66loat_filter\x18\x03 \x03(\x0b\x32>.bytedance.byteplus.rec.content.PredictFilter.FloatFilterEntry\x12V\n\rdouble_filter\x18\x04 \x03(\x0b\x32?.bytedance.byteplus.rec.content.PredictFilter.DoubleFilterEntry\x12\x61\n\x13string_array_filter\x18\x05 \x03(\x0b\x32\x44.bytedance.byteplus.rec.content.PredictFilter.StringArrayFilterEntry\x12[\n\x10int_array_filter\x18\x06 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFilter.IntArrayFilterEntry\x12_\n\x12\x66loat_array_filter\x18\x07 \x03(\x0b\x32\x43.bytedance.byteplus.rec.content.PredictFilter.FloatArrayFilterEntry\x12\x61\n\x13\x64ouble_array_filter\x18\x08 \x03(\x0b\x32\x44.bytedance.byteplus.rec.content.PredictFilter.DoubleArrayFilterEntry\x1a\x33\n\x11StringFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0eIntFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x32\n\x10\x46loatFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11\x44oubleFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a\x65\n\x16StringArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.StringArray:\x02\x38\x01\x1a_\n\x13IntArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x37\n\x05value\x18\x02 \x01(\x0b\x32(.bytedance.byteplus.rec.content.IntArray:\x02\x38\x01\x1a\x63\n\x15\x46loatArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x39\n\x05value\x18\x02 \x01(\x0b\x32*.bytedance.byteplus.rec.content.FloatArray:\x02\x38\x01\x1a\x65\n\x16\x44oubleArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.DoubleArray:\x02\x38\x01\"\x1d\n\x0bStringArray\x12\x0e\n\x06values\x18\x01 \x03(\t\"\x1a\n\x08IntArray\x12\x0e\n\x06values\x18\x01 \x03(\x03\"\x1c\n\nFloatArray\x12\x0e\n\x06values\x18\x01 \x03(\x02\"\x1d\n\x0b\x44oubleArray\x12\x0e\n\x06values\x18\x01 \x03(\x01\"\xcb\x03\n\rPredictResult\x12X\n\x11response_contents\x18\x01 \x03(\x0b\x32=.bytedance.byteplus.rec.content.PredictResult.ResponseContent\x12G\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x38.bytedance.byteplus.rec.content.PredictResult.ExtraEntry\x1a\xe8\x01\n\x0fResponseContent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x0c\n\x04rank\x18\x02 \x01(\x05\x12\x0c\n\x04pctr\x18\x03 \x01(\x01\x12\x0c\n\x04pcvr\x18\x04 \x01(\x01\x12\x10\n\x08rec_info\x18\x05 \x01(\t\x12W\n\x05\x65xtra\x18\x64 \x03(\x0b\x32H.bytedance.byteplus.rec.content.PredictResult.ResponseContent.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xa3\x01\n\x0fPredictResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x44\n\rcontent_value\x18\x04 \x01(\x0b\x32-.bytedance.byteplus.rec.content.PredictResult\"\xa3\x05\n\x1b\x41\x63kServerImpressionsRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08model_id\x18\x02 \x01(\t\x12\x1a\n\x12predict_request_id\x18\n \x01(\t\x12\x0f\n\x07user_id\x18\x0b \x01(\t\x12\x16\n\x0etraffic_source\x18\x0c \x01(\t\x12\x34\n\x05scene\x18\r \x01(\x0b\x32%.bytedance.byteplus.rec.content.Scene\x12\x64\n\x10\x61ltered_contents\x18\x0f \x03(\x0b\x32J.bytedance.byteplus.rec.content.AckServerImpressionsRequest.AlteredContent\x12U\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.AckServerImpressionsRequest.ExtraEntry\x1a\xf7\x01\n\x0e\x41lteredContent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x16\n\x0e\x61ltered_reason\x18\x02 \x01(\t\x12\x0c\n\x04rank\x18\x03 \x01(\x05\x12\x17\n\x0f\x63ontent_id_hash\x18\x64 \x01(\x03\x12\x64\n\x05\x65xtra\x18\x65 \x03(\x0b\x32U.bytedance.byteplus.rec.content.AckServerImpressionsRequest.AlteredContent.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"V\n\x1c\x41\x63kServerImpressionsResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status2\xc8\x06\n\x13\x42ytePlusSaasService\x12l\n\tWritUsers\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12o\n\x0cWritContents\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12q\n\x0eWritUserEvents\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12n\n\x0bWriteOthers\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12o\n\x06\x46inish\x12\x36.bytedance.byteplus.rec.content.FinishWriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12j\n\x07Predict\x12..bytedance.byteplus.rec.content.PredictRequest\x1a/.bytedance.byteplus.rec.content.PredictResponse\x12\x91\x01\n\x14\x41\x63kServerImpressions\x12;.bytedance.byteplus.rec.content.AckServerImpressionsRequest\x1a<.bytedance.byteplus.rec.content.AckServerImpressionsResponseBe\n%com.byteplus.rec.sdk.content.protocolZ<github.com/byteplus-sdk/byteplus-sdk-go-rec/content/protocolb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1b\x62yteplus_saas_content.proto\x12\x1e\x62ytedance.byteplus.rec.content\"8\n\x06Status\x12\x0c\n\x04\x63ode\x18\x01 \x01(\x05\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0f\n\x07success\x18\x03 \x01(\x08\"0\n\x04\x44\x61te\x12\x0c\n\x04year\x18\x01 \x01(\x05\x12\r\n\x05month\x18\x02 \x01(\x05\x12\x0b\n\x03\x64\x61y\x18\x03 \x01(\x05\"\x84\x01\n\x16\x46inishWriteDataRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\r\n\x05stage\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t\x12\x38\n\ndata_dates\x18\n \x03(\x0b\x32$.bytedance.byteplus.rec.content.Date\"*\n\tDataError\x12\x0f\n\x07message\x18\x01 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\x02 \x01(\t\"\x82\x01\n\rWriteResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status\x12\x39\n\x06\x65rrors\x18\x02 \x03(\x0b\x32).bytedance.byteplus.rec.content.DataError\"\xcc\x01\n\x10WriteDataRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\r\n\x05stage\x18\x02 \x01(\t\x12\r\n\x05topic\x18\x03 \x01(\t\x12\x0c\n\x04\x64\x61ta\x18\n \x03(\t\x12J\n\x05\x65xtra\x18\x64 \x03(\x0b\x32;.bytedance.byteplus.rec.content.WriteDataRequest.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xb2\x04\n\x07\x43ontent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x14\n\x0c\x63ontent_type\x18\x02 \x01(\t\x12\x18\n\x10is_recommendable\x18\x03 \x01(\x05\x12\x10\n\x08language\x18\x04 \x01(\t\x12\x15\n\rcontent_title\x18\x05 \x01(\t\x12\x12\n\ncategories\x18\x06 \x01(\t\x12\x0c\n\x04tags\x18\x07 \x01(\t\x12\x15\n\rcollection_id\x18\x08 \x01(\t\x12\x19\n\x11publish_timestamp\x18\t \x01(\x03\x12\x18\n\x10\x63ontent_owner_id\x18\n \x01(\t\x12\x16\n\x0evideo_duration\x18\x0b \x01(\x05\x12\x13\n\x0b\x64\x65scription\x18\x0c \x01(\t\x12\x19\n\x11linked_product_id\x18\r \x01(\t\x12\x12\n\nvideo_urls\x18\x0e \x01(\t\x12\x12\n\nimage_urls\x18\x0f \x01(\t\x12\x13\n\x0buser_rating\x18\x10 \x01(\x02\x12\x17\n\x0fis_paid_content\x18\x11 \x01(\x08\x12\x0e\n\x06source\x18\x12 \x01(\t\x12\x15\n\rcurrent_price\x18\x13 \x01(\x02\x12\x16\n\x0eoriginal_price\x18\x14 \x01(\x02\x12\x41\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x32.bytedance.byteplus.rec.content.Content.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"@\n\x05Scene\x12\x12\n\nscene_name\x18\x01 \x01(\t\x12\x13\n\x0bpage_number\x18\x02 \x01(\x05\x12\x0e\n\x06offset\x18\x03 \x01(\x05\"\xbb\x01\n\x06\x44\x65vice\x12\x10\n\x08platform\x18\x01 \x01(\t\x12\x0f\n\x07os_type\x18\x02 \x01(\t\x12\x13\n\x0b\x61pp_version\x18\x03 \x01(\t\x12\x14\n\x0c\x64\x65vice_model\x18\x04 \x01(\t\x12\x14\n\x0c\x64\x65vice_brand\x18\x05 \x01(\t\x12\x12\n\nos_version\x18\x06 \x01(\t\x12\x14\n\x0c\x62rowser_type\x18\x07 \x01(\t\x12\x12\n\nuser_agent\x18\x08 \x01(\t\x12\x0f\n\x07network\x18\t \x01(\t\"\xe5\x05\n\x0ePredictRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08model_id\x18\x02 \x01(\t\x12\x0f\n\x07user_id\x18\n \x01(\t\x12\x0c\n\x04size\x18\x0b \x01(\x05\x12\x34\n\x05scene\x18\x0c \x01(\x0b\x32%.bytedance.byteplus.rec.content.Scene\x12O\n\x0f\x63ontent_context\x18\x0e \x01(\x0b\x32\x36.bytedance.byteplus.rec.content.PredictRequest.Context\x12G\n\x0c\x66ilter_items\x18\x0f \x03(\x0b\x32\x31.bytedance.byteplus.rec.content.PredictFilterItem\x12H\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x39.bytedance.byteplus.rec.content.PredictRequest.ExtraEntry\x1a\xc5\x02\n\x07\x43ontext\x12=\n\x0croot_content\x18\x01 \x01(\x0b\x32\'.bytedance.byteplus.rec.content.Content\x12\x36\n\x06\x64\x65vice\x18\x02 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Device\x12\x43\n\x12\x63\x61ndidate_contents\x18\x03 \x03(\x0b\x32\'.bytedance.byteplus.rec.content.Content\x12?\n\x07\x66\x65\x61ture\x18\x04 \x01(\x0b\x32..bytedance.byteplus.rec.content.PredictFeature\x12=\n\x06\x66ilter\x18\x05 \x01(\x0b\x32-.bytedance.byteplus.rec.content.PredictFilter\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\x9a\x01\n\x11PredictFilterItem\x12\n\n\x02id\x18\x01 \x01(\t\x12K\n\x05\x65xtra\x18\x64 \x03(\x0b\x32<.bytedance.byteplus.rec.content.PredictFilterItem.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xf0\n\n\x0ePredictFeature\x12Y\n\x0estring_feature\x18\x01 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFeature.StringFeatureEntry\x12S\n\x0bint_feature\x18\x02 \x03(\x0b\x32>.bytedance.byteplus.rec.content.PredictFeature.IntFeatureEntry\x12W\n\rfloat_feature\x18\x03 \x03(\x0b\x32@.bytedance.byteplus.rec.content.PredictFeature.FloatFeatureEntry\x12Y\n\x0e\x64ouble_feature\x18\x04 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFeature.DoubleFeatureEntry\x12\x64\n\x14string_array_feature\x18\x05 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.PredictFeature.StringArrayFeatureEntry\x12^\n\x11int_array_feature\x18\x06 \x03(\x0b\x32\x43.bytedance.byteplus.rec.content.PredictFeature.IntArrayFeatureEntry\x12\x62\n\x13\x66loat_array_feature\x18\x07 \x03(\x0b\x32\x45.bytedance.byteplus.rec.content.PredictFeature.FloatArrayFeatureEntry\x12\x64\n\x14\x64ouble_array_feature\x18\x08 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.PredictFeature.DoubleArrayFeatureEntry\x1a\x34\n\x12StringFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x31\n\x0fIntFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x33\n\x11\x46loatFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x34\n\x12\x44oubleFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a\x66\n\x17StringArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.StringArray:\x02\x38\x01\x1a`\n\x14IntArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x37\n\x05value\x18\x02 \x01(\x0b\x32(.bytedance.byteplus.rec.content.IntArray:\x02\x38\x01\x1a\x64\n\x16\x46loatArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x39\n\x05value\x18\x02 \x01(\x0b\x32*.bytedance.byteplus.rec.content.FloatArray:\x02\x38\x01\x1a\x66\n\x17\x44oubleArrayFeatureEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.DoubleArray:\x02\x38\x01\"\xcf\n\n\rPredictFilter\x12V\n\rstring_filter\x18\x01 \x03(\x0b\x32?.bytedance.byteplus.rec.content.PredictFilter.StringFilterEntry\x12P\n\nint_filter\x18\x02 \x03(\x0b\x32<.bytedance.byteplus.rec.content.PredictFilter.IntFilterEntry\x12T\n\x0c\x66loat_filter\x18\x03 \x03(\x0b\x32>.bytedance.byteplus.rec.content.PredictFilter.FloatFilterEntry\x12V\n\rdouble_filter\x18\x04 \x03(\x0b\x32?.bytedance.byteplus.rec.content.PredictFilter.DoubleFilterEntry\x12\x61\n\x13string_array_filter\x18\x05 \x03(\x0b\x32\x44.bytedance.byteplus.rec.content.PredictFilter.StringArrayFilterEntry\x12[\n\x10int_array_filter\x18\x06 \x03(\x0b\x32\x41.bytedance.byteplus.rec.content.PredictFilter.IntArrayFilterEntry\x12_\n\x12\x66loat_array_filter\x18\x07 \x03(\x0b\x32\x43.bytedance.byteplus.rec.content.PredictFilter.FloatArrayFilterEntry\x12\x61\n\x13\x64ouble_array_filter\x18\x08 \x03(\x0b\x32\x44.bytedance.byteplus.rec.content.PredictFilter.DoubleArrayFilterEntry\x1a\x33\n\x11StringFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a\x30\n\x0eIntFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x03:\x02\x38\x01\x1a\x32\n\x10\x46loatFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x02:\x02\x38\x01\x1a\x33\n\x11\x44oubleFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\x01:\x02\x38\x01\x1a\x65\n\x16StringArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.StringArray:\x02\x38\x01\x1a_\n\x13IntArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x37\n\x05value\x18\x02 \x01(\x0b\x32(.bytedance.byteplus.rec.content.IntArray:\x02\x38\x01\x1a\x63\n\x15\x46loatArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\x39\n\x05value\x18\x02 \x01(\x0b\x32*.bytedance.byteplus.rec.content.FloatArray:\x02\x38\x01\x1a\x65\n\x16\x44oubleArrayFilterEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12:\n\x05value\x18\x02 \x01(\x0b\x32+.bytedance.byteplus.rec.content.DoubleArray:\x02\x38\x01\"\x1d\n\x0bStringArray\x12\x0e\n\x06values\x18\x01 \x03(\t\"\x1a\n\x08IntArray\x12\x0e\n\x06values\x18\x01 \x03(\x03\"\x1c\n\nFloatArray\x12\x0e\n\x06values\x18\x01 \x03(\x02\"\x1d\n\x0b\x44oubleArray\x12\x0e\n\x06values\x18\x01 \x03(\x01\"\xcb\x03\n\rPredictResult\x12X\n\x11response_contents\x18\x01 \x03(\x0b\x32=.bytedance.byteplus.rec.content.PredictResult.ResponseContent\x12G\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x38.bytedance.byteplus.rec.content.PredictResult.ExtraEntry\x1a\xe8\x01\n\x0fResponseContent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x0c\n\x04rank\x18\x02 \x01(\x05\x12\x0c\n\x04pctr\x18\x03 \x01(\x01\x12\x0c\n\x04pcvr\x18\x04 \x01(\x01\x12\x10\n\x08rec_info\x18\x05 \x01(\t\x12W\n\x05\x65xtra\x18\x64 \x03(\x0b\x32H.bytedance.byteplus.rec.content.PredictResult.ResponseContent.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"\xa3\x01\n\x0fPredictResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status\x12\x12\n\nrequest_id\x18\x02 \x01(\t\x12\x44\n\rcontent_value\x18\x04 \x01(\x0b\x32-.bytedance.byteplus.rec.content.PredictResult\"\xa3\x05\n\x1b\x41\x63kServerImpressionsRequest\x12\x12\n\nproject_id\x18\x01 \x01(\t\x12\x10\n\x08model_id\x18\x02 \x01(\t\x12\x1a\n\x12predict_request_id\x18\n \x01(\t\x12\x0f\n\x07user_id\x18\x0b \x01(\t\x12\x16\n\x0etraffic_source\x18\x0c \x01(\t\x12\x34\n\x05scene\x18\r \x01(\x0b\x32%.bytedance.byteplus.rec.content.Scene\x12\x64\n\x10\x61ltered_contents\x18\x0f \x03(\x0b\x32J.bytedance.byteplus.rec.content.AckServerImpressionsRequest.AlteredContent\x12U\n\x05\x65xtra\x18\x64 \x03(\x0b\x32\x46.bytedance.byteplus.rec.content.AckServerImpressionsRequest.ExtraEntry\x1a\xf7\x01\n\x0e\x41lteredContent\x12\x12\n\ncontent_id\x18\x01 \x01(\t\x12\x16\n\x0e\x61ltered_reason\x18\x02 \x01(\t\x12\x0c\n\x04rank\x18\x03 \x01(\x05\x12\x17\n\x0f\x63ontent_id_hash\x18\x64 \x01(\x03\x12\x64\n\x05\x65xtra\x18\x65 \x03(\x0b\x32U.bytedance.byteplus.rec.content.AckServerImpressionsRequest.AlteredContent.ExtraEntry\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\x1a,\n\nExtraEntry\x12\x0b\n\x03key\x18\x01 \x01(\t\x12\r\n\x05value\x18\x02 \x01(\t:\x02\x38\x01\"V\n\x1c\x41\x63kServerImpressionsResponse\x12\x36\n\x06status\x18\x01 \x01(\x0b\x32&.bytedance.byteplus.rec.content.Status2\xc8\x06\n\x13\x42ytePlusSaasService\x12l\n\tWritUsers\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12o\n\x0cWritContents\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12q\n\x0eWritUserEvents\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12n\n\x0bWriteOthers\x12\x30.bytedance.byteplus.rec.content.WriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12o\n\x06\x46inish\x12\x36.bytedance.byteplus.rec.content.FinishWriteDataRequest\x1a-.bytedance.byteplus.rec.content.WriteResponse\x12j\n\x07Predict\x12..bytedance.byteplus.rec.content.PredictRequest\x1a/.bytedance.byteplus.rec.content.PredictResponse\x12\x91\x01\n\x14\x41\x63kServerImpressions\x12;.bytedance.byteplus.rec.content.AckServerImpressionsRequest\x1a<.bytedance.byteplus.rec.content.AckServerImpressionsResponseBe\n%com.byteplus.rec.sdk.content.protocolZ<github.com/byteplus-sdk/byteplus-sdk-go-rec/content/protocolb\x06proto3')
 
 
 
@@ -32,6 +32,8 @@ _DEVICE = DESCRIPTOR.message_types_by_name['Device']
 _PREDICTREQUEST = DESCRIPTOR.message_types_by_name['PredictRequest']
 _PREDICTREQUEST_CONTEXT = _PREDICTREQUEST.nested_types_by_name['Context']
 _PREDICTREQUEST_EXTRAENTRY = _PREDICTREQUEST.nested_types_by_name['ExtraEntry']
+_PREDICTFILTERITEM = DESCRIPTOR.message_types_by_name['PredictFilterItem']
+_PREDICTFILTERITEM_EXTRAENTRY = _PREDICTFILTERITEM.nested_types_by_name['ExtraEntry']
 _PREDICTFEATURE = DESCRIPTOR.message_types_by_name['PredictFeature']
 _PREDICTFEATURE_STRINGFEATUREENTRY = _PREDICTFEATURE.nested_types_by_name['StringFeatureEntry']
 _PREDICTFEATURE_INTFEATUREENTRY = _PREDICTFEATURE.nested_types_by_name['IntFeatureEntry']
@@ -165,6 +167,21 @@ PredictRequest = _reflection.GeneratedProtocolMessageType('PredictRequest', (_me
 _sym_db.RegisterMessage(PredictRequest)
 _sym_db.RegisterMessage(PredictRequest.Context)
 _sym_db.RegisterMessage(PredictRequest.ExtraEntry)
+
+PredictFilterItem = _reflection.GeneratedProtocolMessageType('PredictFilterItem', (_message.Message,), {
+
+  'ExtraEntry' : _reflection.GeneratedProtocolMessageType('ExtraEntry', (_message.Message,), {
+    'DESCRIPTOR' : _PREDICTFILTERITEM_EXTRAENTRY,
+    '__module__' : 'byteplus_saas_content_pb2'
+    # @@protoc_insertion_point(class_scope:bytedance.byteplus.rec.content.PredictFilterItem.ExtraEntry)
+    })
+  ,
+  'DESCRIPTOR' : _PREDICTFILTERITEM,
+  '__module__' : 'byteplus_saas_content_pb2'
+  # @@protoc_insertion_point(class_scope:bytedance.byteplus.rec.content.PredictFilterItem)
+  })
+_sym_db.RegisterMessage(PredictFilterItem)
+_sym_db.RegisterMessage(PredictFilterItem.ExtraEntry)
 
 PredictFeature = _reflection.GeneratedProtocolMessageType('PredictFeature', (_message.Message,), {
 
@@ -423,6 +440,8 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _CONTENT_EXTRAENTRY._serialized_options = b'8\001'
   _PREDICTREQUEST_EXTRAENTRY._options = None
   _PREDICTREQUEST_EXTRAENTRY._serialized_options = b'8\001'
+  _PREDICTFILTERITEM_EXTRAENTRY._options = None
+  _PREDICTFILTERITEM_EXTRAENTRY._serialized_options = b'8\001'
   _PREDICTFEATURE_STRINGFEATUREENTRY._options = None
   _PREDICTFEATURE_STRINGFEATUREENTRY._serialized_options = b'8\001'
   _PREDICTFEATURE_INTFEATUREENTRY._options = None
@@ -486,75 +505,79 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _DEVICE._serialized_start=1322
   _DEVICE._serialized_end=1509
   _PREDICTREQUEST._serialized_start=1512
-  _PREDICTREQUEST._serialized_end=2180
-  _PREDICTREQUEST_CONTEXT._serialized_start=1809
-  _PREDICTREQUEST_CONTEXT._serialized_end=2134
+  _PREDICTREQUEST._serialized_end=2253
+  _PREDICTREQUEST_CONTEXT._serialized_start=1882
+  _PREDICTREQUEST_CONTEXT._serialized_end=2207
   _PREDICTREQUEST_EXTRAENTRY._serialized_start=644
   _PREDICTREQUEST_EXTRAENTRY._serialized_end=688
-  _PREDICTFEATURE._serialized_start=2183
-  _PREDICTFEATURE._serialized_end=3575
-  _PREDICTFEATURE_STRINGFEATUREENTRY._serialized_start=2957
-  _PREDICTFEATURE_STRINGFEATUREENTRY._serialized_end=3009
-  _PREDICTFEATURE_INTFEATUREENTRY._serialized_start=3011
-  _PREDICTFEATURE_INTFEATUREENTRY._serialized_end=3060
-  _PREDICTFEATURE_FLOATFEATUREENTRY._serialized_start=3062
-  _PREDICTFEATURE_FLOATFEATUREENTRY._serialized_end=3113
-  _PREDICTFEATURE_DOUBLEFEATUREENTRY._serialized_start=3115
-  _PREDICTFEATURE_DOUBLEFEATUREENTRY._serialized_end=3167
-  _PREDICTFEATURE_STRINGARRAYFEATUREENTRY._serialized_start=3169
-  _PREDICTFEATURE_STRINGARRAYFEATUREENTRY._serialized_end=3271
-  _PREDICTFEATURE_INTARRAYFEATUREENTRY._serialized_start=3273
-  _PREDICTFEATURE_INTARRAYFEATUREENTRY._serialized_end=3369
-  _PREDICTFEATURE_FLOATARRAYFEATUREENTRY._serialized_start=3371
-  _PREDICTFEATURE_FLOATARRAYFEATUREENTRY._serialized_end=3471
-  _PREDICTFEATURE_DOUBLEARRAYFEATUREENTRY._serialized_start=3473
-  _PREDICTFEATURE_DOUBLEARRAYFEATUREENTRY._serialized_end=3575
-  _PREDICTFILTER._serialized_start=3578
-  _PREDICTFILTER._serialized_end=4937
-  _PREDICTFILTER_STRINGFILTERENTRY._serialized_start=4327
-  _PREDICTFILTER_STRINGFILTERENTRY._serialized_end=4378
-  _PREDICTFILTER_INTFILTERENTRY._serialized_start=4380
-  _PREDICTFILTER_INTFILTERENTRY._serialized_end=4428
-  _PREDICTFILTER_FLOATFILTERENTRY._serialized_start=4430
-  _PREDICTFILTER_FLOATFILTERENTRY._serialized_end=4480
-  _PREDICTFILTER_DOUBLEFILTERENTRY._serialized_start=4482
-  _PREDICTFILTER_DOUBLEFILTERENTRY._serialized_end=4533
-  _PREDICTFILTER_STRINGARRAYFILTERENTRY._serialized_start=4535
-  _PREDICTFILTER_STRINGARRAYFILTERENTRY._serialized_end=4636
-  _PREDICTFILTER_INTARRAYFILTERENTRY._serialized_start=4638
-  _PREDICTFILTER_INTARRAYFILTERENTRY._serialized_end=4733
-  _PREDICTFILTER_FLOATARRAYFILTERENTRY._serialized_start=4735
-  _PREDICTFILTER_FLOATARRAYFILTERENTRY._serialized_end=4834
-  _PREDICTFILTER_DOUBLEARRAYFILTERENTRY._serialized_start=4836
-  _PREDICTFILTER_DOUBLEARRAYFILTERENTRY._serialized_end=4937
-  _STRINGARRAY._serialized_start=4939
-  _STRINGARRAY._serialized_end=4968
-  _INTARRAY._serialized_start=4970
-  _INTARRAY._serialized_end=4996
-  _FLOATARRAY._serialized_start=4998
-  _FLOATARRAY._serialized_end=5026
-  _DOUBLEARRAY._serialized_start=5028
-  _DOUBLEARRAY._serialized_end=5057
-  _PREDICTRESULT._serialized_start=5060
-  _PREDICTRESULT._serialized_end=5519
-  _PREDICTRESULT_RESPONSECONTENT._serialized_start=5241
-  _PREDICTRESULT_RESPONSECONTENT._serialized_end=5473
+  _PREDICTFILTERITEM._serialized_start=2256
+  _PREDICTFILTERITEM._serialized_end=2410
+  _PREDICTFILTERITEM_EXTRAENTRY._serialized_start=644
+  _PREDICTFILTERITEM_EXTRAENTRY._serialized_end=688
+  _PREDICTFEATURE._serialized_start=2413
+  _PREDICTFEATURE._serialized_end=3805
+  _PREDICTFEATURE_STRINGFEATUREENTRY._serialized_start=3187
+  _PREDICTFEATURE_STRINGFEATUREENTRY._serialized_end=3239
+  _PREDICTFEATURE_INTFEATUREENTRY._serialized_start=3241
+  _PREDICTFEATURE_INTFEATUREENTRY._serialized_end=3290
+  _PREDICTFEATURE_FLOATFEATUREENTRY._serialized_start=3292
+  _PREDICTFEATURE_FLOATFEATUREENTRY._serialized_end=3343
+  _PREDICTFEATURE_DOUBLEFEATUREENTRY._serialized_start=3345
+  _PREDICTFEATURE_DOUBLEFEATUREENTRY._serialized_end=3397
+  _PREDICTFEATURE_STRINGARRAYFEATUREENTRY._serialized_start=3399
+  _PREDICTFEATURE_STRINGARRAYFEATUREENTRY._serialized_end=3501
+  _PREDICTFEATURE_INTARRAYFEATUREENTRY._serialized_start=3503
+  _PREDICTFEATURE_INTARRAYFEATUREENTRY._serialized_end=3599
+  _PREDICTFEATURE_FLOATARRAYFEATUREENTRY._serialized_start=3601
+  _PREDICTFEATURE_FLOATARRAYFEATUREENTRY._serialized_end=3701
+  _PREDICTFEATURE_DOUBLEARRAYFEATUREENTRY._serialized_start=3703
+  _PREDICTFEATURE_DOUBLEARRAYFEATUREENTRY._serialized_end=3805
+  _PREDICTFILTER._serialized_start=3808
+  _PREDICTFILTER._serialized_end=5167
+  _PREDICTFILTER_STRINGFILTERENTRY._serialized_start=4557
+  _PREDICTFILTER_STRINGFILTERENTRY._serialized_end=4608
+  _PREDICTFILTER_INTFILTERENTRY._serialized_start=4610
+  _PREDICTFILTER_INTFILTERENTRY._serialized_end=4658
+  _PREDICTFILTER_FLOATFILTERENTRY._serialized_start=4660
+  _PREDICTFILTER_FLOATFILTERENTRY._serialized_end=4710
+  _PREDICTFILTER_DOUBLEFILTERENTRY._serialized_start=4712
+  _PREDICTFILTER_DOUBLEFILTERENTRY._serialized_end=4763
+  _PREDICTFILTER_STRINGARRAYFILTERENTRY._serialized_start=4765
+  _PREDICTFILTER_STRINGARRAYFILTERENTRY._serialized_end=4866
+  _PREDICTFILTER_INTARRAYFILTERENTRY._serialized_start=4868
+  _PREDICTFILTER_INTARRAYFILTERENTRY._serialized_end=4963
+  _PREDICTFILTER_FLOATARRAYFILTERENTRY._serialized_start=4965
+  _PREDICTFILTER_FLOATARRAYFILTERENTRY._serialized_end=5064
+  _PREDICTFILTER_DOUBLEARRAYFILTERENTRY._serialized_start=5066
+  _PREDICTFILTER_DOUBLEARRAYFILTERENTRY._serialized_end=5167
+  _STRINGARRAY._serialized_start=5169
+  _STRINGARRAY._serialized_end=5198
+  _INTARRAY._serialized_start=5200
+  _INTARRAY._serialized_end=5226
+  _FLOATARRAY._serialized_start=5228
+  _FLOATARRAY._serialized_end=5256
+  _DOUBLEARRAY._serialized_start=5258
+  _DOUBLEARRAY._serialized_end=5287
+  _PREDICTRESULT._serialized_start=5290
+  _PREDICTRESULT._serialized_end=5749
+  _PREDICTRESULT_RESPONSECONTENT._serialized_start=5471
+  _PREDICTRESULT_RESPONSECONTENT._serialized_end=5703
   _PREDICTRESULT_RESPONSECONTENT_EXTRAENTRY._serialized_start=644
   _PREDICTRESULT_RESPONSECONTENT_EXTRAENTRY._serialized_end=688
   _PREDICTRESULT_EXTRAENTRY._serialized_start=644
   _PREDICTRESULT_EXTRAENTRY._serialized_end=688
-  _PREDICTRESPONSE._serialized_start=5522
-  _PREDICTRESPONSE._serialized_end=5685
-  _ACKSERVERIMPRESSIONSREQUEST._serialized_start=5688
-  _ACKSERVERIMPRESSIONSREQUEST._serialized_end=6363
-  _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT._serialized_start=6070
-  _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT._serialized_end=6317
+  _PREDICTRESPONSE._serialized_start=5752
+  _PREDICTRESPONSE._serialized_end=5915
+  _ACKSERVERIMPRESSIONSREQUEST._serialized_start=5918
+  _ACKSERVERIMPRESSIONSREQUEST._serialized_end=6593
+  _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT._serialized_start=6300
+  _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT._serialized_end=6547
   _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT_EXTRAENTRY._serialized_start=644
   _ACKSERVERIMPRESSIONSREQUEST_ALTEREDCONTENT_EXTRAENTRY._serialized_end=688
   _ACKSERVERIMPRESSIONSREQUEST_EXTRAENTRY._serialized_start=644
   _ACKSERVERIMPRESSIONSREQUEST_EXTRAENTRY._serialized_end=688
-  _ACKSERVERIMPRESSIONSRESPONSE._serialized_start=6365
-  _ACKSERVERIMPRESSIONSRESPONSE._serialized_end=6451
-  _BYTEPLUSSAASSERVICE._serialized_start=6454
-  _BYTEPLUSSAASSERVICE._serialized_end=7294
+  _ACKSERVERIMPRESSIONSRESPONSE._serialized_start=6595
+  _ACKSERVERIMPRESSIONSRESPONSE._serialized_end=6681
+  _BYTEPLUSSAASSERVICE._serialized_start=6684
+  _BYTEPLUSSAASSERVICE._serialized_end=7524
 # @@protoc_insertion_point(module_scope)

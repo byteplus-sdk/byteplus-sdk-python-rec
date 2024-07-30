@@ -1,7 +1,7 @@
 __title__ = 'byteplus-rec'
 __description__ = 'SDK for byteplus rec'
 __url__ = 'https://github.com/byteplus-sdk'
-__version__ = '1.0.7'
+__version__ = '1.0.8'
 __author__ = 'Guowei Lei'
 __author_email__ = 'leiguowei@bytedance.com'
 __license__ = 'Apache 2.0'

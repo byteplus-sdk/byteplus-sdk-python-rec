@@ -12,6 +12,7 @@ from .byteplus_saas_content_pb2 import (
     IntArray,
     FloatArray,
     DoubleArray,
+    PredictFilterItem,
     PredictRequest,
     PredictResponse,
     PredictResult,

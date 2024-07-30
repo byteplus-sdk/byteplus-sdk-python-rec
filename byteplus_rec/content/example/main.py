@@ -16,7 +16,8 @@ from byteplus_rec.content.constant import STAGE_TRIAL, STAGE_PRODUCTION, STAGE_I
 from byteplus_rec.content.example.mock_helper import mock_users, mock_contents, mock_user_events, mock_predict_content, \
     mock_device
 from byteplus_rec.content.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, Date,\
-    Scene, PredictRequest, PredictResponse, PredictResult, AckServerImpressionsRequest, AckServerImpressionsResponse
+    Scene, PredictRequest, PredictFilterItem, PredictResponse, PredictResult,\
+    AckServerImpressionsRequest, AckServerImpressionsResponse
 from byteplus_rec_core.exception import BizException, NetException
 from byteplus_rec_core.http_caller import Config
 from byteplus_rec_core.metrics.metrics_option import MetricsCfg
@@ -416,6 +417,12 @@ def _build_predict_request() -> PredictRequest:
     ctx.root_content.CopyFrom(mock_predict_content())
     ctx.device.CopyFrom(mock_device())
 
+    # # Specify the list of IDs that need to be filtered by Byteplus recommendation service.
+    # filter_item1 = PredictFilterItem()
+    # filter_item1.id = "632461"
+    # filter_item2 = PredictFilterItem()
+    # filter_item2.id = "632462"
+    # request.filter_items.extend([filter_item1, filter_item2])
     # request.extra["extra_info"] = "extra"
     return request
 

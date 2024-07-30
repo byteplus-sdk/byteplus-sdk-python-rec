@@ -16,7 +16,7 @@ from byteplus_rec.retail.constant import STAGE_TRIAL, STAGE_PRODUCTION, STAGE_IN
 from byteplus_rec.retail.example.mock_helper import mock_users, mock_products, mock_user_events, \
     mock_device, mock_predict_product
 from byteplus_rec.retail.protocol import WriteResponse, WriteDataRequest, FinishWriteDataRequest, PredictRequest, \
-    AckServerImpressionsRequest, Date
+    PredictFilterItem, AckServerImpressionsRequest, Date
 from byteplus_rec_core import utils
 from byteplus_rec_core.exception import BizException, NetException
 from byteplus_rec_core.http_caller import Config
@@ -416,6 +416,12 @@ def _build_predict_request() -> PredictRequest:
     ctx.root_product.CopyFrom(mock_predict_product())
     ctx.device.CopyFrom(mock_device())
 
+    # # Specify the list of IDs that need to be filtered by Byteplus recommendation service.
+    # filter_item1 = PredictFilterItem()
+    # filter_item1.id = "632461"
+    # filter_item2 = PredictFilterItem()
+    # filter_item2.id = "632462"
+    # request.filter_items.extend([filter_item1, filter_item2])
     # request.extra["extra_info"] = "extra"
     return request
 

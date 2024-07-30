@@ -1,4 +1,9 @@
-# [](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.7...v) (2023-11-10)
+## [1.0.8](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.7...v1.0.8) (2024-07-30)
+
+
+### Features
+
+* add filter_items field 
 
 
 

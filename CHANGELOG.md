@@ -1,3 +1,13 @@
+## [1.0.9](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.8...v1.0.9) (2024-08-21)
+
+
+### Features
+
+* update core version to fix time schedule task stack overflow problem 
+
+
+
+
 ## [1.0.8](https://github.com/byteplus-sdk/byteplus-sdk-python-rec/compare/v1.0.7...v1.0.8) (2024-07-30)
 
 
